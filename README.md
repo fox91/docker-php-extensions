@@ -12,5 +12,6 @@
 -	[`pdo_pgsql`](https://github.com/fox91/docker-php-extensions/blob/master/pdo_pgsql/Dockerfile)
 -	[`pecl mongo` (*1.6.11*)](https://github.com/fox91/docker-php-extensions/blob/master/pecl_mongo/Dockerfile)
 -	[`pecl spl_types` (*0.4.0*)](https://github.com/fox91/docker-php-extensions/blob/master/pecl_spltypes/Dockerfile)
+-   [`snmp`](https://github.com/fox91/docker-php-extensions/blob/master/snmp/Dockerfile)
 -	[`soap`](https://github.com/fox91/docker-php-extensions/blob/master/soap/Dockerfile)
 -	[`sockets`](https://github.com/fox91/docker-php-extensions/blob/master/sockets/Dockerfile)
