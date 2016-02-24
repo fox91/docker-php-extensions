@@ -1,7 +1,7 @@
 FROM php:5.6
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
-ENV PECL_MONGO_VERSION 1.6.11
+ENV PECL_MONGO_VERSION 1.6.12
 
 # pecl install mongo
 RUN buildDeps=" \
