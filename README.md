@@ -11,7 +11,7 @@
 -   [`mysqli`](https://github.com/fox91/docker-php-extensions/blob/master/mysqli/Dockerfile)
 -   [`pdo_mysql`](https://github.com/fox91/docker-php-extensions/blob/master/pdo_mysql/Dockerfile)
 -   [`pdo_pgsql`](https://github.com/fox91/docker-php-extensions/blob/master/pdo_pgsql/Dockerfile)
--   [`pecl mongo` (*1.6.12*)](https://github.com/fox91/docker-php-extensions/blob/master/pecl_mongo/Dockerfile)
+-   [`pecl mongodb` (*1.1.2*)](https://github.com/fox91/docker-php-extensions/blob/master/pecl_mongodb/Dockerfile)
 -   [`pecl spl_types` (*0.4.0*)](https://github.com/fox91/docker-php-extensions/blob/master/pecl_spltypes/Dockerfile)
 -   [`snmp`](https://github.com/fox91/docker-php-extensions/blob/master/snmp/Dockerfile)
 -   [`soap`](https://github.com/fox91/docker-php-extensions/blob/master/soap/Dockerfile)
