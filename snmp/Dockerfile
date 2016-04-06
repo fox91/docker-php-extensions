@@ -9,7 +9,7 @@ RUN persistentDeps=" \
  && buildDeps=" \
      libsnmp-dev \
  " \
- && set -x \
+ && set -ex \
  && sed -i -r 's/deb http\:\/\/httpredir\.debian\.org\/debian jessie main/deb http\:\/\/httpredir\.debian\.org\/debian jessie main non-free/g' /etc/apt/sources.list \
  && sed -i -r 's/deb http\:\/\/httpredir\.debian\.org\/debian jessie\-updates main/deb http\:\/\/httpredir\.debian\.org\/debian jessie\-updates main non-free/g' /etc/apt/sources.list \
  && sed -i -r 's/deb http\:\/\/security\.debian\.org jessie\/updates main/deb http\:\/\/security\.debian\.org jessie\/updates main non-free/g' /etc/apt/sources.list \

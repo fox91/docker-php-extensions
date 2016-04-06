@@ -4,8 +4,8 @@ MAINTAINER Andrea Falco <fox91fox@gmail.com>
 ENV PECL_SPLTYPES_VERSION 0.4.0
 
 # pecl install spl_types
-RUN set -x \
- && curl -SL "http://pecl.php.net/get/SPL_Types-$PECL_SPLTYPES_VERSION.tgz" -o spl_types.tar.gz \
+RUN set -ex \
+ && curl -sSL "https://pecl.php.net/get/SPL_Types-$PECL_SPLTYPES_VERSION.tgz" -o spl_types.tar.gz \
  && mkdir -p /usr/src/php/ext/spl_types \
  && tar -xzC /usr/src/php/ext/spl_types --strip-components=1 -f spl_types.tar.gz \
  && rm spl_types.tar.gz* \

@@ -8,7 +8,7 @@ RUN persistentDeps=" \
  && buildDeps=" \
      libpq-dev \
  " \
- && set -x \
+ && set -ex \
  && DEBIAN_FRONTEND=noninteractive apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends \
  && docker-php-ext-install pdo_pgsql \
