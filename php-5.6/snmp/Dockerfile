@@ -15,6 +15,6 @@ RUN persistentDeps=" \
   && sed -i -r 's/deb http\:\/\/security\.debian\.org jessie\/updates main/deb http\:\/\/security\.debian\.org jessie\/updates main non-free/g' /etc/apt/sources.list \
   && DEBIAN_FRONTEND=noninteractive apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends \
-  && docker-php-ext-install snmp \
+  && docker-php-ext-install -j$(nproc) snmp \
   && DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

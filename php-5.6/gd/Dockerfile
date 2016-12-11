@@ -26,6 +26,6 @@ RUN persistentDeps=" \
     --with-vpx-dir=/usr/include/ \
     --with-freetype-dir=/usr/include/ \
     --enable-gd-native-ttf \
-  && docker-php-ext-install gd \
+  && docker-php-ext-install -j$(nproc) gd \
   && DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

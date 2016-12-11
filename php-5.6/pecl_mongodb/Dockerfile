@@ -14,6 +14,6 @@ RUN buildDeps=" \
   && mkdir -p /usr/src/php/ext/mongodb \
   && tar -xzC /usr/src/php/ext/mongodb --strip-components=1 -f mongodb.tar.gz \
   && rm mongodb.tar.gz* \
-  && docker-php-ext-install mongodb \
+  && docker-php-ext-install -j$(nproc) mongodb \
   && DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -9,5 +9,5 @@ RUN set -ex \
   && mkdir -p /usr/src/php/ext/spl_types \
   && tar -xzC /usr/src/php/ext/spl_types --strip-components=1 -f spl_types.tar.gz \
   && rm spl_types.tar.gz* \
-  && docker-php-ext-install spl_types \
+  && docker-php-ext-install -j$(nproc) spl_types \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
