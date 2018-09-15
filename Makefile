@@ -6,7 +6,9 @@
 
 7.1: 7.1-stretch
 
-stretch: 5.6-stretch 7.0-stretch 7.1-stretch
+7.2: 7.2-stretch
+
+stretch: 5.6-stretch 7.0-stretch 7.1-stretch 7.2-stretch
 
 5.6-stretch:
 	docker build -t my/php:5.6-stretch-bcmath 5.6/stretch/bcmath
@@ -53,3 +55,18 @@ stretch: 5.6-stretch 7.0-stretch 7.1-stretch
 	docker build -t my/php:7.1-stretch-snmp 7.1/stretch/snmp
 	docker build -t my/php:7.1-stretch-soap 7.1/stretch/soap
 	docker build -t my/php:7.1-stretch-sockets 7.1/stretch/sockets
+
+7.2-stretch:
+	docker build -t my/php:7.2-stretch-bcmath 7.2/stretch/bcmath
+	docker build -t my/php:7.2-stretch-gd 7.2/stretch/gd
+	docker build -t my/php:7.2-stretch-intl 7.2/stretch/intl
+	docker build -t my/php:7.2-stretch-mbstring 7.2/stretch/mbstring
+	docker build -t my/php:7.2-stretch-mysqli 7.2/stretch/mysqli
+	docker build -t my/php:7.2-stretch-pdo_mysql 7.2/stretch/pdo_mysql
+	docker build -t my/php:7.2-stretch-pdo_pgsql 7.2/stretch/pdo_pgsql
+	docker build -t my/php:7.2-stretch-pecl_mongodb 7.2/stretch/pecl_mongodb
+	docker build -t my/php:7.2-stretch-pecl_redis 7.2/stretch/pecl_redis
+	docker build -t my/php:7.2-stretch-snmp 7.2/stretch/snmp
+	docker build -t my/php:7.2-stretch-soap 7.2/stretch/soap
+	docker build -t my/php:7.2-stretch-sockets 7.2/stretch/sockets
+	docker build -t my/php:7.2-stretch-sodium 7.2/stretch/sodium
