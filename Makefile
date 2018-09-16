@@ -6,9 +6,11 @@
 
 7.1: 7.1-stretch
 
-7.2: 7.2-stretch
+7.2: 7.2-stretch 7.2-alpine3.8
 
 stretch: 5.6-stretch 7.0-stretch 7.1-stretch 7.2-stretch
+
+alpine: 7.2-alpine3.8
 
 5.6-stretch:
 	docker build -t my/php:5.6-stretch-bcmath 5.6/stretch/bcmath
@@ -69,4 +71,14 @@ stretch: 5.6-stretch 7.0-stretch 7.1-stretch 7.2-stretch
 	docker build -t my/php:7.2-stretch-snmp 7.2/stretch/snmp
 	docker build -t my/php:7.2-stretch-soap 7.2/stretch/soap
 	docker build -t my/php:7.2-stretch-sockets 7.2/stretch/sockets
-	docker build -t my/php:7.2-stretch-sodium 7.2/stretch/sodium
+
+7.2-alpine3.8:
+	docker build -t my/php:7.2-alpine3.8-bcmath 7.2/alpine3.8/bcmath
+	docker build -t my/php:7.2-alpine3.8-gd 7.2/alpine3.8/gd
+	docker build -t my/php:7.2-alpine3.8-mbstring 7.2/alpine3.8/mbstring
+	docker build -t my/php:7.2-alpine3.8-mysqli 7.2/alpine3.8/mysqli
+	docker build -t my/php:7.2-alpine3.8-pdo_mysql 7.2/alpine3.8/pdo_mysql
+	docker build -t my/php:7.2-alpine3.8-pdo_pgsql 7.2/alpine3.8/pdo_pgsql
+	docker build -t my/php:7.2-alpine3.8-pecl_redis 7.2/alpine3.8/pecl_redis
+	docker build -t my/php:7.2-alpine3.8-soap 7.2/alpine3.8/soap
+	docker build -t my/php:7.2-alpine3.8-sockets 7.2/alpine3.8/sockets
