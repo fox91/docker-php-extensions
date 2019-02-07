@@ -75,10 +75,13 @@ alpine: 7.2-alpine3.8
 7.2-alpine3.8:
 	docker build -t my/php:7.2-alpine3.8-bcmath 7.2/alpine3.8/bcmath
 	docker build -t my/php:7.2-alpine3.8-gd 7.2/alpine3.8/gd
+	docker build -t my/php:7.2-alpine3.8-intl 7.2/alpine3.8/intl
 	docker build -t my/php:7.2-alpine3.8-mbstring 7.2/alpine3.8/mbstring
 	docker build -t my/php:7.2-alpine3.8-mysqli 7.2/alpine3.8/mysqli
 	docker build -t my/php:7.2-alpine3.8-pdo_mysql 7.2/alpine3.8/pdo_mysql
 	docker build -t my/php:7.2-alpine3.8-pdo_pgsql 7.2/alpine3.8/pdo_pgsql
+	docker build -t my/php:7.2-alpine3.8-pecl_mongodb 7.2/alpine3.8/pecl_mongodb
 	docker build -t my/php:7.2-alpine3.8-pecl_redis 7.2/alpine3.8/pecl_redis
+	docker build -t my/php:7.2-alpine3.8-snmp 7.2/alpine3.8/snmp
 	docker build -t my/php:7.2-alpine3.8-soap 7.2/alpine3.8/soap
 	docker build -t my/php:7.2-alpine3.8-sockets 7.2/alpine3.8/sockets
