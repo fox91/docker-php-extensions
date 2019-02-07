@@ -1,14 +1,14 @@
-FROM php:7.2-alpine3.8
+FROM php:7.2-alpine3.9
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
-ENV PECL_XDEBUG_VERSION 2.6.1
+ENV PECL_APCU_VERSION 5.1.16
 
-# pecl install xdebug
+# pecl install apcu
 RUN buildDeps=" \
     ${PHPIZE_DEPS} \
   " \
   && set -ex \
   && apk add --no-cache --virtual .build-deps $buildDeps \
-  && pecl install xdebug-$PECL_XDEBUG_VERSION \
-  && docker-php-ext-enable xdebug \
+  && pecl install apcu-$PECL_APCU_VERSION \
+  && docker-php-ext-enable apcu \
   && apk del .build-deps

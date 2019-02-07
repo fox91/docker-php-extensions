@@ -1,15 +1,15 @@
-FROM php:7.2-alpine3.8
+FROM php:7.2-alpine3.9
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
-# soap
+# intl
 RUN persistentDeps=" \
-    libxml2 \
+    icu \
   " \
   && buildDeps=" \
-    libxml2-dev \
+    icu-dev \
   " \
   && set -ex \
   && apk add --no-cache --virtual .persistent-deps $persistentDeps \
   && apk add --no-cache --virtual .build-deps $buildDeps \
-  && docker-php-ext-install -j$(nproc) soap \
+  && docker-php-ext-install -j$(nproc) intl \
   && apk del .build-deps
