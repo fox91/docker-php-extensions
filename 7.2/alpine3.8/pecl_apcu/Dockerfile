@@ -1,0 +1,14 @@
+FROM php:7.2-alpine3.8
+MAINTAINER Andrea Falco <fox91fox@gmail.com>
+
+ENV PECL_APCU_VERSION 5.1.16
+
+# pecl install apcu
+RUN buildDeps=" \
+    ${PHPIZE_DEPS} \
+  " \
+  && set -ex \
+  && apk add --no-cache --virtual .build-deps $buildDeps \
+  && pecl install apcu-$PECL_APCU_VERSION \
+  && docker-php-ext-enable apcu \
+  && apk del .build-deps
