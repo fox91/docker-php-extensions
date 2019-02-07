@@ -64,6 +64,7 @@ alpine: 7.2-alpine3.8
 	docker build -t my/php:7.2-stretch-intl 7.2/stretch/intl
 	docker build -t my/php:7.2-stretch-mbstring 7.2/stretch/mbstring
 	docker build -t my/php:7.2-stretch-mysqli 7.2/stretch/mysqli
+	docker build -t my/php:7.2-stretch-opcache 7.2/stretch/opcache
 	docker build -t my/php:7.2-stretch-pdo_mysql 7.2/stretch/pdo_mysql
 	docker build -t my/php:7.2-stretch-pdo_pgsql 7.2/stretch/pdo_pgsql
 	docker build -t my/php:7.2-stretch-pecl_mongodb 7.2/stretch/pecl_mongodb
@@ -78,6 +79,7 @@ alpine: 7.2-alpine3.8
 	docker build -t my/php:7.2-alpine3.8-intl 7.2/alpine3.8/intl
 	docker build -t my/php:7.2-alpine3.8-mbstring 7.2/alpine3.8/mbstring
 	docker build -t my/php:7.2-alpine3.8-mysqli 7.2/alpine3.8/mysqli
+	docker build -t my/php:7.2-alpine3.8-opcache 7.2/alpine3.8/opcache
 	docker build -t my/php:7.2-alpine3.8-pdo_mysql 7.2/alpine3.8/pdo_mysql
 	docker build -t my/php:7.2-alpine3.8-pdo_pgsql 7.2/alpine3.8/pdo_pgsql
 	docker build -t my/php:7.2-alpine3.8-pecl_mongodb 7.2/alpine3.8/pecl_mongodb
