@@ -1,7 +1,7 @@
 FROM php:7.2-stretch
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
-ENV PECL_REDIS_VERSION 4.1.1
+ENV PECL_REDIS_VERSION 4.2.0
 
 # pecl install redis
 RUN set -ex \
