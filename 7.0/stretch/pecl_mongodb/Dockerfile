@@ -1,7 +1,7 @@
 FROM php:7.0-stretch
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
-ENV PECL_MONGODB_VERSION 1.5.2
+ENV PECL_MONGODB_VERSION 1.5.3
 
 # pecl install mongodb
 RUN buildDeps=" \
