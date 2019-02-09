@@ -15,10 +15,13 @@ alpine3.9: 7.2-alpine3.9
 	docker build -t my/php:7.1-stretch-mbstring 7.1/stretch/mbstring
 	docker build -t my/php:7.1-stretch-mcrypt 7.1/stretch/mcrypt
 	docker build -t my/php:7.1-stretch-mysqli 7.1/stretch/mysqli
+	docker build -t my/php:7.1-stretch-opcache 7.1/stretch/opcache
 	docker build -t my/php:7.1-stretch-pdo_mysql 7.1/stretch/pdo_mysql
 	docker build -t my/php:7.1-stretch-pdo_pgsql 7.1/stretch/pdo_pgsql
+	docker build -t my/php:7.1-stretch-pecl_apcu 7.1/stretch/pecl_apcu
 	docker build -t my/php:7.1-stretch-pecl_mongodb 7.1/stretch/pecl_mongodb
 	docker build -t my/php:7.1-stretch-pecl_redis 7.1/stretch/pecl_redis
+	docker build -t my/php:7.1-stretch-pecl_xdebug 7.1/stretch/pecl_xdebug
 	docker build -t my/php:7.1-stretch-snmp 7.1/stretch/snmp
 	docker build -t my/php:7.1-stretch-soap 7.1/stretch/soap
 	docker build -t my/php:7.1-stretch-sockets 7.1/stretch/sockets
