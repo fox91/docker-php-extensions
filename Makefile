@@ -68,6 +68,7 @@ alpine3.9: 7.2-alpine3.9
 	docker build -t my/php:7.2-stretch-pdo_mysql 7.2/stretch/pdo_mysql
 	docker build -t my/php:7.2-stretch-pdo_pgsql 7.2/stretch/pdo_pgsql
 	docker build -t my/php:7.2-stretch-pecl_apcu 7.2/stretch/pecl_apcu
+	docker build -t my/php:7.2-stretch-pecl_mcrypt 7.2/stretch/pecl_mcrypt
 	docker build -t my/php:7.2-stretch-pecl_mongodb 7.2/stretch/pecl_mongodb
 	docker build -t my/php:7.2-stretch-pecl_redis 7.2/stretch/pecl_redis
 	docker build -t my/php:7.2-stretch-pecl_xdebug 7.2/stretch/pecl_xdebug
@@ -85,6 +86,7 @@ alpine3.9: 7.2-alpine3.9
 	docker build -t my/php:7.2-alpine3.9-pdo_mysql 7.2/alpine3.9/pdo_mysql
 	docker build -t my/php:7.2-alpine3.9-pdo_pgsql 7.2/alpine3.9/pdo_pgsql
 	docker build -t my/php:7.2-alpine3.9-pecl_apcu 7.2/alpine3.9/pecl_apcu
+	docker build -t my/php:7.2-alpine3.9-pecl_mcrypt 7.2/alpine3.9/pecl_mcrypt
 	docker build -t my/php:7.2-alpine3.9-pecl_mongodb 7.2/alpine3.9/pecl_mongodb
 	docker build -t my/php:7.2-alpine3.9-pecl_redis 7.2/alpine3.9/pecl_redis
 	docker build -t my/php:7.2-alpine3.9-pecl_xdebug 7.2/alpine3.9/pecl_xdebug
