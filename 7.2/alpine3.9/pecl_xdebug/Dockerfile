@@ -8,7 +8,7 @@ RUN buildDeps=" \
     ${PHPIZE_DEPS} \
   " \
   && set -ex \
-  && apk add --no-cache --virtual .build-deps $buildDeps \
+  && apk add --no-cache --virtual .xdebug-build-deps $buildDeps \
   && pecl install xdebug-$PECL_XDEBUG_VERSION \
   && docker-php-ext-enable xdebug \
-  && apk del .build-deps
+  && apk del .xdebug-build-deps
