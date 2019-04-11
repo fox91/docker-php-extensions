@@ -1,4 +1,4 @@
-FROM php:7.2-alpine3.9
+FROM php:7.3-alpine3.9
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
 ENV PECL_XDEBUG_VERSION 2.7.1

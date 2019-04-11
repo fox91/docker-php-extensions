@@ -1,7 +1,7 @@
 FROM php:7.1-stretch
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
-ENV PECL_APCU_VERSION 5.1.16
+ENV PECL_APCU_VERSION 5.1.17
 
 # pecl install apcu
 RUN set -ex \

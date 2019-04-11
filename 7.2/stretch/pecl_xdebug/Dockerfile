@@ -1,7 +1,7 @@
 FROM php:7.2-stretch
 MAINTAINER Andrea Falco <fox91fox@gmail.com>
 
-ENV PECL_XDEBUG_VERSION 2.6.1
+ENV PECL_XDEBUG_VERSION 2.7.1
 
 # pecl install xdebug
 RUN set -ex \
