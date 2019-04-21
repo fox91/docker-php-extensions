@@ -6,9 +6,8 @@ ENV PECL_APCU_VERSION 5.1.17
 # pecl install apcu
 RUN buildDeps=" \
     ${PHPIZE_DEPS} \
-  " \
-  && set -ex \
-  && apk add --no-cache --virtual .apcu-build-deps $buildDeps \
-  && pecl install apcu-$PECL_APCU_VERSION \
-  && docker-php-ext-enable apcu \
-  && apk del .apcu-build-deps
+  "; \
+  apk add --no-cache --virtual .apcu-build-deps $buildDeps; \
+  pecl install apcu-$PECL_APCU_VERSION; \
+  docker-php-ext-enable apcu; \
+  apk del .apcu-build-deps

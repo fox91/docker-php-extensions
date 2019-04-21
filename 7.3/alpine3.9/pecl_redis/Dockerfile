@@ -6,9 +6,8 @@ ENV PECL_REDIS_VERSION 4.3.0
 # pecl install redis
 RUN buildDeps=" \
     ${PHPIZE_DEPS} \
-  " \
-  && set -ex \
-  && apk add --no-cache --virtual .redis-build-deps $buildDeps \
-  && pecl install redis-$PECL_REDIS_VERSION \
-  && docker-php-ext-enable redis \
-  && apk del .redis-build-deps
+  "; \
+  apk add --no-cache --virtual .redis-build-deps $buildDeps; \
+  pecl install redis-$PECL_REDIS_VERSION; \
+  docker-php-ext-enable redis; \
+  apk del .redis-build-deps
