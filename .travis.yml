@@ -4,15 +4,17 @@ services:
   - docker
 
 env:
+  - PHP_VERSION=7.2 OS_VERSION=stretch
+  - PHP_VERSION=7.3 OS_VERSION=stretch
   - PHP_EXT=bcmath
   - PHP_EXT=bz2
 
 install:
-  - docker build -t my/php:7.3-stretch-${PHP_EXT} 7.3/stretch/${PHP_EXT}
+  - docker build -t my/php:${PHP_VERSION}-${OS_VERSION}-${PHP_EXT} ${PHP_VERSION}/${OS_VERSION}/${PHP_EXT}
 
 script:
-  - docker run -it --rm my/php:7.3-stretch-${PHP_EXT} php --version
-  - docker run -it --rm my/php:7.3-stretch-${PHP_EXT} php -i | grep -i $(echo ${PHP_EXT} | sed -e 's|pecl_||')
+  - docker run -it --rm my/php:${PHP_VERSION}-${OS_VERSION}-${PHP_EXT} php --version
+  - docker run -it --rm my/php:${PHP_VERSION}-${OS_VERSION}-${PHP_EXT} php -i | grep -i $(echo ${PHP_EXT} | sed -e 's|pecl_||')
 
 notifications:
   email: false
