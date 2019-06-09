@@ -1,0 +1,11 @@
+language: ruby
+
+services:
+  - docker
+
+install:
+  - docker build -t my/php:7.3-stretch-bcmath 7.3/stretch/bcmath
+
+script:
+  - docker run -it --rm my/php:7.3-stretch-bcmath php --version
+  - docker run -it --rm my/php:7.3-stretch-bcmath php -i | grep -i $(echo bcmath | sed -e 's|pecl_||')
