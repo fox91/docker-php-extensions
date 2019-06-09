@@ -1,11 +1,27 @@
-language: ruby
+language: bash
 
 services:
   - docker
 
+matrix:
+  include:
+  - name: "PHP: 7.1, OS: stretch"
+    env:  PHP_VERSION=7.1 OS_VERSION=stretch
+  - name: "PHP: 7.2, OS: alpine3.9"
+    env:  PHP_VERSION=7.2 OS_VERSION=alpine3.9
+  - name: "PHP: 7.2, OS: stretch"
+    env:  PHP_VERSION=7.2 OS_VERSION=stretch
+  - name: "PHP: 7.3, OS: alpine3.9"
+    env:  PHP_VERSION=7.3 OS_VERSION=alpine3.9
+  - name: "PHP: 7.3, OS: stretch"
+    env:  PHP_VERSION=7.3 OS_VERSION=stretch
+
 install:
-  - docker build -t my/php:7.3-stretch-bcmath 7.3/stretch/bcmath
+  - make ${PHP_VERSION}-${OS_VERSION}-build
 
 script:
-  - docker run -it --rm my/php:7.3-stretch-bcmath php --version
-  - docker run -it --rm my/php:7.3-stretch-bcmath php -i | grep -i $(echo bcmath | sed -e 's|pecl_||')
+  - make ${PHP_VERSION}-${OS_VERSION}-test-version
+  - make ${PHP_VERSION}-${OS_VERSION}-test-info
+
+notifications:
+  email: true

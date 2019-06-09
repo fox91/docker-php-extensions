@@ -45,7 +45,6 @@ clean: 7.1-stretch-clean 7.2-stretch-clean 7.2-alpine3.9-clean 7.3-stretch-clean
 	for file in $(shell find $(CURDIR)/7.1/stretch -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		search=$$(echo $$d | sed -e 's|pecl_||'); \
 		docker run -it --rm my/php:7.1-stretch-$$d php --version; \
 	done
 
@@ -85,7 +84,6 @@ clean: 7.1-stretch-clean 7.2-stretch-clean 7.2-alpine3.9-clean 7.3-stretch-clean
 	for file in $(shell find $(CURDIR)/7.2/stretch -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		search=$$(echo $$d | sed -e 's|pecl_||'); \
 		docker run -it --rm my/php:7.2-stretch-$$d php --version; \
 	done
 
@@ -125,7 +123,6 @@ clean: 7.1-stretch-clean 7.2-stretch-clean 7.2-alpine3.9-clean 7.3-stretch-clean
 	for file in $(shell find $(CURDIR)/7.2/alpine3.9 -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		search=$$(echo $$d | sed -e 's|pecl_||'); \
 		docker run -it --rm my/php:7.2-alpine3.9-$$d php --version; \
 	done
 
@@ -165,7 +162,6 @@ clean: 7.1-stretch-clean 7.2-stretch-clean 7.2-alpine3.9-clean 7.3-stretch-clean
 	for file in $(shell find $(CURDIR)/7.3/stretch -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		search=$$(echo $$d | sed -e 's|pecl_||'); \
 		docker run -it --rm my/php:7.3-stretch-$$d php --version; \
 	done
 
@@ -205,7 +201,6 @@ clean: 7.1-stretch-clean 7.2-stretch-clean 7.2-alpine3.9-clean 7.3-stretch-clean
 	for file in $(shell find $(CURDIR)/7.3/alpine3.9 -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		search=$$(echo $$d | sed -e 's|pecl_||'); \
 		docker run -it --rm my/php:7.3-alpine3.9-$$d php --version; \
 	done
 
