@@ -1,5 +1,6 @@
 FROM php:7.3-stretch
-MAINTAINER Andrea Falco <fox91fox@gmail.com>
+
+LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 ENV PECL_MONGODB_VERSION 1.5.3
 

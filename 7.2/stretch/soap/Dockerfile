@@ -1,5 +1,6 @@
 FROM php:7.2-stretch
-MAINTAINER Andrea Falco <fox91fox@gmail.com>
+
+LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # soap
 RUN set -ex; \

@@ -1,5 +1,6 @@
 FROM php:7.1-stretch
-MAINTAINER Andrea Falco <fox91fox@gmail.com>
+
+LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 ENV PECL_XDEBUG_VERSION 2.7.1
 

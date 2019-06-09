@@ -1,5 +1,6 @@
 FROM php:7.3-alpine3.9
-MAINTAINER Andrea Falco <fox91fox@gmail.com>
+
+LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 ENV PECL_REDIS_VERSION 4.3.0
 
