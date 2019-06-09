@@ -3,23 +3,25 @@ language: bash
 services:
   - docker
 
-env:
-  - PHP_EXT=bcmath
-  - PHP_EXT=bz2
-
 matrix:
   include:
-  - name: "7.2 stretch"
-    env: PHP_VERSION=7.2 OS_VERSION=stretch
-  - name: "7.3 stretch"
-    env: PHP_VERSION=7.3 OS_VERSION=stretch
+  - name: "PHP: 7.1, OS: stretch"
+    env:  PHP_VERSION=7.1 OS_VERSION=stretch
+  - name: "PHP: 7.2, OS: alpine3.9"
+    env:  PHP_VERSION=7.2 OS_VERSION=alpine3.9
+  - name: "PHP: 7.2, OS: stretch"
+    env:  PHP_VERSION=7.2 OS_VERSION=stretch
+  - name: "PHP: 7.3, OS: alpine3.9"
+    env:  PHP_VERSION=7.3 OS_VERSION=alpine3.9
+  - name: "PHP: 7.3, OS: stretch"
+    env:  PHP_VERSION=7.3 OS_VERSION=stretch
 
 install:
-  - docker build -t my/php:${PHP_VERSION}-${OS_VERSION}-${PHP_EXT} ${PHP_VERSION}/${OS_VERSION}/${PHP_EXT}
+  - make ${PHP_VERSION}-${OS_VERSION}-build
 
 script:
-  - docker run -it --rm my/php:${PHP_VERSION}-${OS_VERSION}-${PHP_EXT} php --version
-  - docker run -it --rm my/php:${PHP_VERSION}-${OS_VERSION}-${PHP_EXT} php -i | grep -i $(echo ${PHP_EXT} | sed -e 's|pecl_||')
+  - make ${PHP_VERSION}-${OS_VERSION}-test-version
+  - make ${PHP_VERSION}-${OS_VERSION}-test-info
 
 notifications:
   email: false
