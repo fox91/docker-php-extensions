@@ -4,10 +4,15 @@ services:
   - docker
 
 env:
-  - PHP_VERSION=7.2 OS_VERSION=stretch
-  - PHP_VERSION=7.3 OS_VERSION=stretch
   - PHP_EXT=bcmath
   - PHP_EXT=bz2
+
+matrix:
+  include:
+  - name: "7.2 stretch"
+    env: PHP_VERSION=7.2 OS_VERSION=stretch
+  - name: "7.3 stretch"
+    env: PHP_VERSION=7.3 OS_VERSION=stretch
 
 install:
   - docker build -t my/php:${PHP_VERSION}-${OS_VERSION}-${PHP_EXT} ${PHP_VERSION}/${OS_VERSION}/${PHP_EXT}
