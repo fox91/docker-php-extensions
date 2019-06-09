@@ -24,4 +24,4 @@ script:
   - make ${PHP_VERSION}-${OS_VERSION}-test-info
 
 notifications:
-  email: false
+  email: true
