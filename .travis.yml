@@ -1,4 +1,4 @@
-language: ruby
+language: bash
 
 services:
   - docker
@@ -9,3 +9,6 @@ install:
 script:
   - docker run -it --rm my/php:7.3-stretch-bcmath php --version
   - docker run -it --rm my/php:7.3-stretch-bcmath php -i | grep -i $(echo bcmath | sed -e 's|pecl_||')
+
+notifications:
+  email: false
