@@ -5,7 +5,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 # intl
 RUN set -ex; \
   persistentDeps=" \
-    libicu57 \
+    libicu63 \
   "; \
   buildDeps=" \
     libicu-dev \

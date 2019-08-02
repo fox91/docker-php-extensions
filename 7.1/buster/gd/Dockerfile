@@ -8,7 +8,7 @@ RUN set -ex; \
     libfreetype6 \
     libjpeg62-turbo \
     libpng16-16 \
-    libvpx4 \
+    libvpx5 \
     libxpm4 \
   "; \
   buildDeps=" \
