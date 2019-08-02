@@ -2,98 +2,98 @@
 all: 7.1 7.2 7.3
 
 .PHONY: 7.1
-7.1: 7.1-stretch
+7.1: 7.1-buster
 
 .PHONY: 7.2
-7.2: 7.2-stretch 7.2-alpine3.9
+7.2: 7.2-buster 7.2-alpine3.9
 
 .PHONY: 7.3
-7.3: 7.3-stretch 7.3-alpine3.9
+7.3: 7.3-buster 7.3-alpine3.9
 
-.PHONY: stretch
-stretch: 7.1-stretch 7.2-stretch 7.3-stretch
+.PHONY: buster
+buster: 7.1-buster 7.2-buster 7.3-buster
 
 .PHONY: alpine3.9
 alpine3.9: 7.2-alpine3.9 7.3-alpine3.9
 
 .PHONY: clean
-clean: 7.1-stretch-clean 7.2-stretch-clean 7.2-alpine3.9-clean 7.3-stretch-clean 7.3-alpine3.9-clean
+clean: 7.1-buster-clean 7.2-buster-clean 7.2-alpine3.9-clean 7.3-buster-clean 7.3-alpine3.9-clean
 
-# 7.1-stretch
+# 7.1-buster
 
-.PHONY: 7.1-stretch
-7.1-stretch: 7.1-stretch-build 7.1-stretch-test-version 7.1-stretch-test-info
+.PHONY: 7.1-buster
+7.1-buster: 7.1-buster-build 7.1-buster-test-version 7.1-buster-test-info
 
-.PHONY: 7.1-stretch-build
-7.1-stretch-build:
-	for file in $(shell find $(CURDIR)/7.1/stretch -type f); do \
+.PHONY: 7.1-buster-build
+7.1-buster-build:
+	for file in $(shell find $(CURDIR)/7.1/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker build -t my/php:7.1-stretch-$$d 7.1/stretch/$$d; \
+		docker build -t my/php:7.1-buster-$$d 7.1/buster/$$d; \
 	done
 
-.PHONY: 7.1-stretch-clean
-7.1-stretch-clean:
-	for file in $(shell find $(CURDIR)/7.1/stretch -type f); do \
+.PHONY: 7.1-buster-clean
+7.1-buster-clean:
+	for file in $(shell find $(CURDIR)/7.1/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker rmi -f my/php:7.1-stretch-$$d; \
+		docker rmi -f my/php:7.1-buster-$$d; \
 	done
 
-.PHONY: 7.1-stretch-test-version
-7.1-stretch-test-version:
-	for file in $(shell find $(CURDIR)/7.1/stretch -type f); do \
+.PHONY: 7.1-buster-test-version
+7.1-buster-test-version:
+	for file in $(shell find $(CURDIR)/7.1/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker run -it --rm my/php:7.1-stretch-$$d php --version; \
+		docker run -it --rm my/php:7.1-buster-$$d php --version; \
 	done
 
-.PHONY: 7.1-stretch-test-info
-7.1-stretch-test-info:
-	for file in $(shell find $(CURDIR)/7.1/stretch -type f); do \
+.PHONY: 7.1-buster-test-info
+7.1-buster-test-info:
+	for file in $(shell find $(CURDIR)/7.1/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
 		search=$$(echo $$d | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:7.1-stretch-$$d php -i \
+		docker run -it --rm my/php:7.1-buster-$$d php -i \
 			| grep "$$search"; \
 	done
 
-# 7.2-stretch
+# 7.2-buster
 
-.PHONY: 7.2-stretch
-7.2-stretch: 7.2-stretch-build 7.2-stretch-test-version 7.2-stretch-test-info
+.PHONY: 7.2-buster
+7.2-buster: 7.2-buster-build 7.2-buster-test-version 7.2-buster-test-info
 
-.PHONY: 7.2-stretch-build
-7.2-stretch-build:
-	for file in $(shell find $(CURDIR)/7.2/stretch -type f); do \
+.PHONY: 7.2-buster-build
+7.2-buster-build:
+	for file in $(shell find $(CURDIR)/7.2/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker build -t my/php:7.2-stretch-$$d 7.2/stretch/$$d; \
+		docker build -t my/php:7.2-buster-$$d 7.2/buster/$$d; \
 	done
 
-.PHONY: 7.2-stretch-clean
-7.2-stretch-clean:
-	for file in $(shell find $(CURDIR)/7.2/stretch -type f); do \
+.PHONY: 7.2-buster-clean
+7.2-buster-clean:
+	for file in $(shell find $(CURDIR)/7.2/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker rmi -f my/php:7.2-stretch-$$d; \
+		docker rmi -f my/php:7.2-buster-$$d; \
 	done
 
-.PHONY: 7.2-stretch-test-version
-7.2-stretch-test-version:
-	for file in $(shell find $(CURDIR)/7.2/stretch -type f); do \
+.PHONY: 7.2-buster-test-version
+7.2-buster-test-version:
+	for file in $(shell find $(CURDIR)/7.2/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker run -it --rm my/php:7.2-stretch-$$d php --version; \
+		docker run -it --rm my/php:7.2-buster-$$d php --version; \
 	done
 
-.PHONY: 7.2-stretch-test-info
-7.2-stretch-test-info:
-	for file in $(shell find $(CURDIR)/7.2/stretch -type f); do \
+.PHONY: 7.2-buster-test-info
+7.2-buster-test-info:
+	for file in $(shell find $(CURDIR)/7.2/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
 		search=$$(echo $$d | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:7.2-stretch-$$d php -i \
+		docker run -it --rm my/php:7.2-buster-$$d php -i \
 			| grep "$$search"; \
 	done
 
@@ -136,42 +136,42 @@ clean: 7.1-stretch-clean 7.2-stretch-clean 7.2-alpine3.9-clean 7.3-stretch-clean
 			| grep "$$search"; \
 	done
 
-# 7.3-stretch
+# 7.3-buster
 
-.PHONY: 7.3-stretch
-7.3-stretch: 7.3-stretch-build 7.3-stretch-test-version 7.3-stretch-test-info
+.PHONY: 7.3-buster
+7.3-buster: 7.3-buster-build 7.3-buster-test-version 7.3-buster-test-info
 
-.PHONY: 7.3-stretch-build
-7.3-stretch-build:
-	for file in $(shell find $(CURDIR)/7.3/stretch -type f); do \
+.PHONY: 7.3-buster-build
+7.3-buster-build:
+	for file in $(shell find $(CURDIR)/7.3/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker build -t my/php:7.3-stretch-$$d 7.3/stretch/$$d; \
+		docker build -t my/php:7.3-buster-$$d 7.3/buster/$$d; \
 	done
 
-.PHONY: 7.3-stretch-clean
-7.3-stretch-clean:
-	for file in $(shell find $(CURDIR)/7.3/stretch -type f); do \
+.PHONY: 7.3-buster-clean
+7.3-buster-clean:
+	for file in $(shell find $(CURDIR)/7.3/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker rmi -f my/php:7.3-stretch-$$d; \
+		docker rmi -f my/php:7.3-buster-$$d; \
 	done
 
-.PHONY: 7.3-stretch-test-version
-7.3-stretch-test-version:
-	for file in $(shell find $(CURDIR)/7.3/stretch -type f); do \
+.PHONY: 7.3-buster-test-version
+7.3-buster-test-version:
+	for file in $(shell find $(CURDIR)/7.3/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
-		docker run -it --rm my/php:7.3-stretch-$$d php --version; \
+		docker run -it --rm my/php:7.3-buster-$$d php --version; \
 	done
 
-.PHONY: 7.3-stretch-test-info
-7.3-stretch-test-info:
-	for file in $(shell find $(CURDIR)/7.3/stretch -type f); do \
+.PHONY: 7.3-buster-test-info
+7.3-buster-test-info:
+	for file in $(shell find $(CURDIR)/7.3/buster -type f); do \
 		d=$$(basename $$(dirname $$file)); \
 		echo "-=-=- $$d"; \
 		search=$$(echo $$d | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:7.3-stretch-$$d php -i \
+		docker run -it --rm my/php:7.3-buster-$$d php -i \
 			| grep "$$search"; \
 	done
 
