@@ -7,12 +7,12 @@ matrix:
   include:
   - name: "PHP: 7.1, OS: buster"
     env:  PHP_VERSION=7.1 OS_VERSION=buster
-  - name: "PHP: 7.2, OS: alpine3.9"
-    env:  PHP_VERSION=7.2 OS_VERSION=alpine3.9
+  - name: "PHP: 7.2, OS: alpine3.10"
+    env:  PHP_VERSION=7.2 OS_VERSION=alpine3.10
   - name: "PHP: 7.2, OS: buster"
     env:  PHP_VERSION=7.2 OS_VERSION=buster
-  - name: "PHP: 7.3, OS: alpine3.9"
-    env:  PHP_VERSION=7.3 OS_VERSION=alpine3.9
+  - name: "PHP: 7.3, OS: alpine3.10"
+    env:  PHP_VERSION=7.3 OS_VERSION=alpine3.10
   - name: "PHP: 7.3, OS: buster"
     env:  PHP_VERSION=7.3 OS_VERSION=buster
 
