@@ -5,16 +5,16 @@ services:
 
 matrix:
   include:
-  - name: "PHP: 7.1, OS: stretch"
-    env:  PHP_VERSION=7.1 OS_VERSION=stretch
+  - name: "PHP: 7.1, OS: buster"
+    env:  PHP_VERSION=7.1 OS_VERSION=buster
   - name: "PHP: 7.2, OS: alpine3.9"
     env:  PHP_VERSION=7.2 OS_VERSION=alpine3.9
-  - name: "PHP: 7.2, OS: stretch"
-    env:  PHP_VERSION=7.2 OS_VERSION=stretch
+  - name: "PHP: 7.2, OS: buster"
+    env:  PHP_VERSION=7.2 OS_VERSION=buster
   - name: "PHP: 7.3, OS: alpine3.9"
     env:  PHP_VERSION=7.3 OS_VERSION=alpine3.9
-  - name: "PHP: 7.3, OS: stretch"
-    env:  PHP_VERSION=7.3 OS_VERSION=stretch
+  - name: "PHP: 7.3, OS: buster"
+    env:  PHP_VERSION=7.3 OS_VERSION=buster
 
 install:
   - make ${PHP_VERSION}-${OS_VERSION}-build
