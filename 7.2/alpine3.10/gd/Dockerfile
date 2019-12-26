@@ -5,24 +5,26 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 # gd
 RUN set -ex; \
   persistentDeps=" \
+    freetype \
     libjpeg-turbo \
     libpng \
-    libvpx \
+    libwebp \
     libxpm \
   "; \
   buildDeps=" \
+    freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
-    libvpx-dev \
+    libwebp-dev \
     libxpm-dev \
   "; \
   apk add --no-cache --virtual .gd-persistent-deps $persistentDeps; \
   apk add --no-cache --virtual .gd-build-deps $buildDeps; \
   docker-php-ext-configure gd \
+    --with-freetype-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
-    --with-xpm-dir=/usr/include/ \
-    --with-vpx-dir=/usr/include/ \
-    --enable-gd-native-ttf; \
+    --with-webp-dir=/usr/include/ \
+    --with-xpm-dir=/usr/include/; \
   docker-php-ext-install -j$(nproc) gd; \
   apk del .gd-build-deps
