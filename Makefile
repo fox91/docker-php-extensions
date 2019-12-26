@@ -17,7 +17,16 @@ buster: 7.2-buster 7.3-buster 7.4-buster
 alpine3.10: 7.2-alpine3.10 7.3-alpine3.10 7.4-alpine3.10
 
 .PHONY: clean
-clean: 7.2-buster-clean 7.2-alpine3.10-clean 7.3-buster-clean 7.3-alpine3.10-clean 7.4-buster-clean 7.4-alpine3.10-clean
+clean: 7.2-buster-clean 7.2-alpine3.10-clean 7.3-buster-clean 7.3-alpine3.10-clean 7.4-buster-clean 7.4-alpine3.10-clean cleanup
+
+.PHONY: cleanup
+cleanup:
+	for os_v in 'buster' 'alpine3.10'; do \
+		for php_v in '7.2' '7.3' '7.4'; do \
+			echo "-=-=- \"PHP: $$php_v, OS: $$os_v\" =-=-="; \
+			docker rmi -f php:$$php_v-$$os_v; \
+		done \
+	done
 
 # 7.2-buster
 
