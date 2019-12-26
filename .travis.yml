@@ -5,8 +5,6 @@ services:
 
 matrix:
   include:
-  - name: "PHP: 7.1, OS: buster"
-    env:  PHP_VERSION=7.1 OS_VERSION=buster
   - name: "PHP: 7.2, OS: alpine3.10"
     env:  PHP_VERSION=7.2 OS_VERSION=alpine3.10
   - name: "PHP: 7.2, OS: buster"
@@ -15,6 +13,10 @@ matrix:
     env:  PHP_VERSION=7.3 OS_VERSION=alpine3.10
   - name: "PHP: 7.3, OS: buster"
     env:  PHP_VERSION=7.3 OS_VERSION=buster
+  - name: "PHP: 7.4, OS: alpine3.10"
+    env:  PHP_VERSION=7.4 OS_VERSION=alpine3.10
+  - name: "PHP: 7.4, OS: buster"
+    env:  PHP_VERSION=7.4 OS_VERSION=buster
 
 install:
   - make ${PHP_VERSION}-${OS_VERSION}-build
