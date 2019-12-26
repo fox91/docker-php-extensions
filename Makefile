@@ -21,6 +21,7 @@ clean: 7.2-buster-clean 7.2-alpine3.10-clean 7.3-buster-clean 7.3-alpine3.10-cle
 
 .PHONY: cleanup
 cleanup:
+	set -eu; \
 	for os_v in 'buster' 'alpine3.10'; do \
 		for php_v in '7.2' '7.3' '7.4'; do \
 			echo "-=-=- \"PHP: $$php_v, OS: $$os_v\" =-=-="; \
@@ -35,6 +36,7 @@ cleanup:
 
 .PHONY: 7.2-buster-build
 7.2-buster-build:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -45,6 +47,7 @@ cleanup:
 
 .PHONY: 7.2-buster-clean
 7.2-buster-clean:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -55,6 +58,7 @@ cleanup:
 
 .PHONY: 7.2-buster-test-version
 7.2-buster-test-version:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -65,6 +69,7 @@ cleanup:
 
 .PHONY: 7.2-buster-test-info
 7.2-buster-test-info:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -82,6 +87,7 @@ cleanup:
 
 .PHONY: 7.2-alpine3.10-build
 7.2-alpine3.10-build:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -92,6 +98,7 @@ cleanup:
 
 .PHONY: 7.2-alpine3.10-clean
 7.2-alpine3.10-clean:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -102,6 +109,7 @@ cleanup:
 
 .PHONY: 7.2-alpine3.10-test-version
 7.2-alpine3.10-test-version:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -112,6 +120,7 @@ cleanup:
 
 .PHONY: 7.2-alpine3.10-test-info
 7.2-alpine3.10-test-info:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.2/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -129,6 +138,7 @@ cleanup:
 
 .PHONY: 7.3-buster-build
 7.3-buster-build:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -139,6 +149,7 @@ cleanup:
 
 .PHONY: 7.3-buster-clean
 7.3-buster-clean:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -149,6 +160,7 @@ cleanup:
 
 .PHONY: 7.3-buster-test-version
 7.3-buster-test-version:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -159,6 +171,7 @@ cleanup:
 
 .PHONY: 7.3-buster-test-info
 7.3-buster-test-info:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -176,6 +189,7 @@ cleanup:
 
 .PHONY: 7.3-alpine3.10-build
 7.3-alpine3.10-build:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -186,6 +200,7 @@ cleanup:
 
 .PHONY: 7.3-alpine3.10-clean
 7.3-alpine3.10-clean:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -196,6 +211,7 @@ cleanup:
 
 .PHONY: 7.3-alpine3.10-test-version
 7.3-alpine3.10-test-version:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -206,6 +222,7 @@ cleanup:
 
 .PHONY: 7.3-alpine3.10-test-info
 7.3-alpine3.10-test-info:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.3/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -223,6 +240,7 @@ cleanup:
 
 .PHONY: 7.4-buster-build
 7.4-buster-build:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -233,6 +251,7 @@ cleanup:
 
 .PHONY: 7.4-buster-clean
 7.4-buster-clean:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -243,6 +262,7 @@ cleanup:
 
 .PHONY: 7.4-buster-test-version
 7.4-buster-test-version:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -253,6 +273,7 @@ cleanup:
 
 .PHONY: 7.4-buster-test-info
 7.4-buster-test-info:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -270,6 +291,7 @@ cleanup:
 
 .PHONY: 7.4-alpine3.10-build
 7.4-alpine3.10-build:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -280,6 +302,7 @@ cleanup:
 
 .PHONY: 7.4-alpine3.10-clean
 7.4-alpine3.10-clean:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -290,6 +313,7 @@ cleanup:
 
 .PHONY: 7.4-alpine3.10-test-version
 7.4-alpine3.10-test-version:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -300,6 +324,7 @@ cleanup:
 
 .PHONY: 7.4-alpine3.10-test-info
 7.4-alpine3.10-test-info:
+	set -eu; \
 	for file in $(shell find $(CURDIR)/7.4/alpine3.10 -type f -name Dockerfile); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -317,6 +342,7 @@ gd: gd-build gd-test-version gd-test-info
 
 .PHONY: gd-build
 gd-build:
+	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \
 		os_v=$$(basename $$(dirname $$file)); \
@@ -327,6 +353,7 @@ gd-build:
 
 .PHONY: gd-clean
 gd-clean:
+	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \
 		os_v=$$(basename $$(dirname $$file)); \
@@ -337,6 +364,7 @@ gd-clean:
 
 .PHONY: gd-test-version
 gd-test-version:
+	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \
 		os_v=$$(basename $$(dirname $$file)); \
@@ -347,6 +375,7 @@ gd-test-version:
 
 .PHONY: gd-test-info
 gd-test-info:
+	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \
 		os_v=$$(basename $$(dirname $$file)); \
