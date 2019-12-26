@@ -2,7 +2,7 @@ FROM php:7.2-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_REDIS_VERSION 5.0.2
+ENV PECL_REDIS_VERSION 5.1.1
 
 # pecl install redis
 RUN set -ex; \

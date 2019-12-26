@@ -2,7 +2,7 @@ FROM php:7.2-alpine3.10
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_XDEBUG_VERSION 2.7.2
+ENV PECL_XDEBUG_VERSION 2.9.0
 
 # pecl install xdebug
 RUN buildDeps=" \

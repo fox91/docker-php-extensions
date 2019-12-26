@@ -2,7 +2,7 @@ FROM php:7.3-alpine3.10
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_MCRYPT_VERSION 1.0.2
+ENV PECL_MCRYPT_VERSION 1.0.3
 
 # pecl install mcrypt
 RUN set -ex; \
