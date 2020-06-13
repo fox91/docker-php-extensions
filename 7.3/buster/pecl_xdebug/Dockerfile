@@ -2,7 +2,7 @@ FROM php:7.3-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_XDEBUG_VERSION 2.9.0
+ENV PECL_XDEBUG_VERSION 2.9.6
 
 # pecl install xdebug
 RUN set -ex; \

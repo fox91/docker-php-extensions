@@ -2,7 +2,7 @@ FROM php:7.4-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_YAML_VERSION 2.0.4
+ENV PECL_YAML_VERSION 2.1.0
 
 # pecl install yaml
 RUN set -ex; \
