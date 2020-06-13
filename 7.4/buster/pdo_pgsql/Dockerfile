@@ -3,7 +3,7 @@ FROM php:7.4-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # pdo_pgsql
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libpq5 \
   "; \

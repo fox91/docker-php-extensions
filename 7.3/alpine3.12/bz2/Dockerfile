@@ -4,7 +4,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # bz2
 # https://github.com/docker-library/php/issues/512#issuecomment-339448094
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     bzip2 \
     bzip2-dev \

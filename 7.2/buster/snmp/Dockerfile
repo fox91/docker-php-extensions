@@ -3,7 +3,7 @@ FROM php:7.2-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # snmp
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libsnmp30 \
     snmp-mibs-downloader \

@@ -5,7 +5,8 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ENV PECL_MONGODB_VERSION 1.7.4
 
 # pecl install mongodb
-RUN buildDeps=" \
+RUN set -eux; \
+  buildDeps=" \
     libssl-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \

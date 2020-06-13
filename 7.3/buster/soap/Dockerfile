@@ -3,7 +3,7 @@ FROM php:7.3-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # soap
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libxml2 \
   "; \

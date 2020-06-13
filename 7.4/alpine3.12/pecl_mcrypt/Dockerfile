@@ -5,7 +5,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ENV PECL_MCRYPT_VERSION 1.0.3
 
 # pecl install mcrypt
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libmcrypt \
   "; \

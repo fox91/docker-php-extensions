@@ -3,7 +3,7 @@ FROM php:7.2-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # zip
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libzip4 \
   "; \

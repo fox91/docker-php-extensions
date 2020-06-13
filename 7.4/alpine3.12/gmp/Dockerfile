@@ -3,7 +3,7 @@ FROM php:7.4-alpine3.12
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # gmp
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     gmp \
   "; \

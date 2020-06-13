@@ -3,7 +3,7 @@ FROM php:7.3-alpine3.12
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # ldap
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libldap \
   "; \

@@ -3,7 +3,7 @@ FROM php:7.3-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # bz2
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libbz2-1.0 \
   "; \

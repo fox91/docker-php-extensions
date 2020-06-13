@@ -5,7 +5,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ENV PECL_YAML_VERSION 2.1.0
 
 # pecl install yaml
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     yaml \
   "; \

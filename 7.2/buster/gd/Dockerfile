@@ -3,7 +3,7 @@ FROM php:7.2-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # gd
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libfreetype6 \
     libjpeg62-turbo \

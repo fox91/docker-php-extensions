@@ -3,7 +3,7 @@ FROM php:7.4-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # gmp
-RUN set -ex; \
+RUN set -eux; \
   persistentDeps=" \
     libgmp10 \
   "; \
