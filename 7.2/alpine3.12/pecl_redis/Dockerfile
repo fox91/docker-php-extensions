@@ -11,5 +11,6 @@ RUN set -eux; \
   "; \
   apk add --no-cache --virtual .redis-build-deps $buildDeps; \
   pecl install redis-$PECL_REDIS_VERSION; \
+  rm -rf /tmp/* /var/tmp/*; \
   docker-php-ext-enable redis; \
   apk del .redis-build-deps

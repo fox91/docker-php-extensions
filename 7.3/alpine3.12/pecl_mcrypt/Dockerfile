@@ -16,5 +16,6 @@ RUN set -eux; \
   apk add --no-cache --virtual .mcrypt-persistent-deps $persistentDeps; \
   apk add --no-cache --virtual .mcrypt-build-deps $buildDeps; \
   pecl install mcrypt-$PECL_MCRYPT_VERSION; \
+  rm -rf /tmp/* /var/tmp/*; \
   docker-php-ext-enable mcrypt; \
   apk del .mcrypt-build-deps

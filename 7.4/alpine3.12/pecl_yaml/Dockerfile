@@ -16,5 +16,6 @@ RUN set -eux; \
   apk add --no-cache --virtual .yaml-persistent-deps $persistentDeps; \
   apk add --no-cache --virtual .yaml-build-deps $buildDeps; \
   pecl install yaml-$PECL_YAML_VERSION; \
+  rm -rf /tmp/* /var/tmp/*; \
   docker-php-ext-enable yaml; \
   apk del .yaml-build-deps

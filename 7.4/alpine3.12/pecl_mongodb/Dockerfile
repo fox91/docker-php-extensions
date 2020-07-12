@@ -16,5 +16,6 @@ RUN set -eux; \
   apk add --no-cache --virtual .mongodb-persistent-deps $persistentDeps; \
   apk add --no-cache --virtual .mongodb-build-deps $buildDeps; \
   pecl install mongodb-$PECL_MONGODB_VERSION; \
+  rm -rf /tmp/* /var/tmp/*; \
   docker-php-ext-enable mongodb; \
   apk del .mongodb-build-deps

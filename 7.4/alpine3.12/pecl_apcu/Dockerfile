@@ -11,5 +11,6 @@ RUN set -eux; \
   "; \
   apk add --no-cache --virtual .apcu-build-deps $buildDeps; \
   pecl install apcu-$PECL_APCU_VERSION; \
+  rm -rf /tmp/* /var/tmp/*; \
   docker-php-ext-enable apcu; \
   apk del .apcu-build-deps

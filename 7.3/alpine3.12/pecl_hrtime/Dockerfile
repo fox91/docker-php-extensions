@@ -11,5 +11,6 @@ RUN set -eux; \
   "; \
   apk add --no-cache --virtual .hrtime-build-deps $buildDeps; \
   pecl install hrtime-$PECL_HRTIME_VERSION; \
+  rm -rf /tmp/* /var/tmp/*; \
   docker-php-ext-enable hrtime; \
   apk del .hrtime-build-deps
