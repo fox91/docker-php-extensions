@@ -2,7 +2,7 @@ FROM php:7.2-alpine3.12
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_TIMEZONEDB_VERSION 2020.1
+ARG PECL_TIMEZONEDB_VERSION=2020.1
 
 # pecl install timezonedb
 RUN set -eux; \

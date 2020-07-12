@@ -2,7 +2,7 @@ FROM php:7.4-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_HRTIME_VERSION 0.6.0
+ARG PECL_HRTIME_VERSION=0.6.0
 
 # pecl install hrtime
 RUN set -eux; \
