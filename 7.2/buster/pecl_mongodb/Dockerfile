@@ -2,7 +2,7 @@ FROM php:7.2-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ENV PECL_MONGODB_VERSION 1.7.4
+ENV PECL_MONGODB_VERSION 1.7.5
 
 # pecl install mongodb
 RUN set -eux; \
