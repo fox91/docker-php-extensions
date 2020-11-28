@@ -2,7 +2,7 @@ FROM php:7.3-alpine3.12
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_REDIS_VERSION=5.3.1
+ARG PECL_REDIS_VERSION=5.3.2
 
 # pecl install redis
 RUN set -eux; \
