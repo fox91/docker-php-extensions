@@ -17,6 +17,10 @@ matrix:
     env:  PHP_VERSION=7.4 OS_VERSION=alpine3.12
   - name: "PHP: 7.4, OS: buster"
     env:  PHP_VERSION=7.4 OS_VERSION=buster
+  - name: "PHP: 8.0, OS: alpine3.12"
+    env:  PHP_VERSION=8.0 OS_VERSION=alpine3.12
+  - name: "PHP: 8.0, OS: buster"
+    env:  PHP_VERSION=8.0 OS_VERSION=buster
 
 install:
   - make ${PHP_VERSION}-${OS_VERSION}-build
