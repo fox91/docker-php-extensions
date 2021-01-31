@@ -2,7 +2,7 @@ FROM php:8.0-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_MEMCACHE_VERSION=4.0.5.2
+ARG PECL_MEMCACHE_VERSION=8.0
 
 # pecl install memcache
 RUN set -eux; \
