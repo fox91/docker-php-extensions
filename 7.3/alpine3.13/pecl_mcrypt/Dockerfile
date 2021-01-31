@@ -1,0 +1,21 @@
+FROM php:7.3-alpine3.13
+
+LABEL maintainer="Andrea Falco <andrea@falco.sh>"
+
+ARG PECL_MCRYPT_VERSION=1.0.4
+
+# pecl install mcrypt
+RUN set -eux; \
+  persistentDeps=" \
+    libmcrypt \
+  "; \
+  buildDeps=" \
+    ${PHPIZE_DEPS} \
+    libmcrypt-dev \
+  "; \
+  apk add --no-cache --virtual .mcrypt-persistent-deps $persistentDeps; \
+  apk add --no-cache --virtual .mcrypt-build-deps $buildDeps; \
+  pecl install mcrypt-$PECL_MCRYPT_VERSION; \
+  rm -rf /tmp/* /var/tmp/*; \
+  docker-php-ext-enable mcrypt; \
+  apk del .mcrypt-build-deps
