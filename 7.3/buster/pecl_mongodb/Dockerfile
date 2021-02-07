@@ -2,16 +2,24 @@ FROM php:7.3-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_MONGODB_VERSION=1.9.0
-
-# pecl install mongodb
+# PHP ext-mongodb
+ARG PHPEXT_MONGODB_VERSION=1.9.0
 RUN set -eux; \
   buildDeps=" \
     libssl-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps --no-install-recommends; \
-  pecl install mongodb-$PECL_MONGODB_VERSION; \
-  docker-php-ext-enable mongodb; \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${buildDeps} \
+  ; \
+  \
+  pecl bundle -d /usr/src/php/ext mongodb-${PHPEXT_MONGODB_VERSION}; \
+  docker-php-ext-install -j$(nproc) mongodb; \
+  \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
+  docker-php-source delete; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

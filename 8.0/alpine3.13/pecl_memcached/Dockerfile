@@ -2,22 +2,23 @@ FROM php:8.0-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_MEMCACHED_VERSION=3.1.5
-
-# pecl install memcached
+# PHP ext-memcached
+ARG PHPEXT_MEMCACHED_VERSION=3.1.5
 RUN set -eux; \
   persistentDeps=" \
     libmemcached \
     libzip \
   "; \
   buildDeps=" \
-    ${PHPIZE_DEPS} \
     libmemcached-dev \
     libzip-dev \
   "; \
-  apk add --no-cache --virtual .memcached-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .memcached-build-deps $buildDeps; \
-  pecl install memcached-$PECL_MEMCACHED_VERSION; \
-  rm -rf /tmp/* /var/tmp/*; \
-  docker-php-ext-enable memcached; \
-  apk del .memcached-build-deps
+  apk add --no-cache --virtual .memcached-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .memcached-build-deps ${buildDeps}; \
+  \
+  pecl bundle -d /usr/src/php/ext memcached-${PHPEXT_MEMCACHED_VERSION}; \
+  docker-php-ext-install -j$(nproc) memcached; \
+  \
+  apk del --no-cache --no-network .memcached-build-deps; \
+  docker-php-source delete; \
+  rm -rf /tmp/* /var/tmp/*

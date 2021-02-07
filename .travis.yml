@@ -23,7 +23,9 @@ install:
 
 script:
   - make ${PHP_VERSION}-${OS_VERSION}-test-version
+  - make ${PHP_VERSION}-${OS_VERSION}-test-module
   - make ${PHP_VERSION}-${OS_VERSION}-test-info
+  - make ${PHP_VERSION}-${OS_VERSION}-test-tmp-files
 
 notifications:
   email: true

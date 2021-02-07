@@ -2,7 +2,7 @@ FROM php:7.4-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# intl
+# PHP ext-intl
 RUN set -eux; \
   persistentDeps=" \
     libicu63 \
@@ -11,7 +11,16 @@ RUN set -eux; \
     libicu-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
+    ${buildDeps} \
+  ; \
+  \
   docker-php-ext-install -j$(nproc) intl; \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -2,9 +2,8 @@ FROM php:8.0-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PHPIREDIS_VERSION=1.0.1
-
 # PHP ext-phpiredis
+ARG PHPEXT_PHPIREDIS_VERSION=1.0.1
 RUN set -eux; \
   persistentDeps=" \
     libhiredis0.14 \
@@ -13,14 +12,24 @@ RUN set -eux; \
     libhiredis-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
+    ${buildDeps} \
+  ; \
   \
   mkdir -p /usr/src/php/ext/phpiredis; \
-  curl -fsSL https://github.com/nrk/phpiredis/archive/v${PHPIREDIS_VERSION}.tar.gz \
+  curl -fsSL https://github.com/nrk/phpiredis/archive/v${PHPEXT_PHPIREDIS_VERSION}.tar.gz \
     | tar xz -C "/usr/src/php/ext/phpiredis" --strip 1; \
   \
-  docker-php-ext-configure phpiredis --enable-phpiredis; \
-  docker-php-ext-install phpiredis; \
+  docker-php-ext-configure phpiredis \
+    --enable-phpiredis \
+  ; \
+  docker-php-ext-install -j$(nproc) phpiredis; \
   \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
+  docker-php-source delete; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

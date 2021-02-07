@@ -2,7 +2,7 @@ FROM php:8.0-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# ldap
+# PHP ext-ldap
 RUN set -eux; \
   persistentDeps=" \
     libldap \
@@ -10,7 +10,9 @@ RUN set -eux; \
   buildDeps=" \
     openldap-dev \
   "; \
-  apk add --no-cache --virtual .ldap-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .ldap-build-deps $buildDeps; \
+  apk add --no-cache --virtual .ldap-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .ldap-build-deps ${buildDeps}; \
+  \
   docker-php-ext-install -j$(nproc) ldap; \
-  apk del .ldap-build-deps
+  \
+  apk del --no-cache --no-network .ldap-build-deps

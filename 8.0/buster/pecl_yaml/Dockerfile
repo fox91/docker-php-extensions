@@ -2,9 +2,8 @@ FROM php:8.0-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_YAML_VERSION=2.2.1
-
-# pecl install yaml
+# PHP ext-yaml
+ARG PHPEXT_YAML_VERSION=2.2.1
 RUN set -eux; \
   persistentDeps=" \
     libyaml-0-2 \
@@ -13,8 +12,18 @@ RUN set -eux; \
     libyaml-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends; \
-  pecl install yaml-$PECL_YAML_VERSION; \
-  docker-php-ext-enable yaml; \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
+    ${buildDeps} \
+  ; \
+  \
+  pecl bundle -d /usr/src/php/ext yaml-${PHPEXT_YAML_VERSION}; \
+  docker-php-ext-install -j$(nproc) yaml; \
+  \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
+  docker-php-source delete; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

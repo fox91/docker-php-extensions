@@ -2,7 +2,7 @@ FROM php:7.4-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# gd
+# PHP ext-gd
 RUN set -eux; \
   persistentDeps=" \
     freetype \
@@ -18,12 +18,15 @@ RUN set -eux; \
     libwebp-dev \
     libxpm-dev \
   "; \
-  apk add --no-cache --virtual .gd-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .gd-build-deps $buildDeps; \
+  apk add --no-cache --virtual .gd-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .gd-build-deps ${buildDeps}; \
+  \
   docker-php-ext-configure gd \
     --with-freetype \
     --with-jpeg \
     --with-webp \
-    --with-xpm; \
+    --with-xpm \
+  ; \
   docker-php-ext-install -j$(nproc) gd; \
-  apk del .gd-build-deps
+  \
+  apk del --no-cache --no-network .gd-build-deps

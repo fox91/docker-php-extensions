@@ -2,7 +2,7 @@ FROM php:8.0-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# soap
+# PHP ext-soap
 RUN set -eux; \
   persistentDeps=" \
     libxml2 \
@@ -10,7 +10,9 @@ RUN set -eux; \
   buildDeps=" \
     libxml2-dev \
   "; \
-  apk add --no-cache --virtual .soap-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .soap-build-deps $buildDeps; \
+  apk add --no-cache --virtual .soap-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .soap-build-deps ${buildDeps}; \
+  \
   docker-php-ext-install -j$(nproc) soap; \
-  apk del .soap-build-deps
+  \
+  apk del --no-cache --no-network .soap-build-deps

@@ -2,10 +2,11 @@ FROM php:7.3-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_HRTIME_VERSION=0.6.0
-
-# pecl install hrtime
+# PHP ext-hrtime
+ARG PHPEXT_HRTIME_VERSION=0.6.0
 RUN set -eux; \
-  pecl install hrtime-$PECL_HRTIME_VERSION; \
-  rm -rf /tmp/* /var/tmp/*; \
-  docker-php-ext-enable hrtime
+  pecl bundle -d /usr/src/php/ext hrtime-${PHPEXT_HRTIME_VERSION}; \
+  docker-php-ext-install -j$(nproc) hrtime; \
+  \
+  docker-php-source delete; \
+  rm -rf /tmp/* /var/tmp/*

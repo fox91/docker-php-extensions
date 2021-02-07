@@ -2,17 +2,11 @@ FROM php:7.4-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PHPEXT_PROTOBUF_VERSION=3.14.0
-
 # PHP ext-protobuf
+ARG PHPEXT_PROTOBUF_VERSION=3.14.0
 RUN set -eux; \
-  buildDeps=" \
-    ${PHPIZE_DEPS} \
-  "; \
-  apk add --no-cache --virtual .protobuf-build-deps $buildDeps; \
+  pecl bundle -d /usr/src/php/ext protobuf-${PHPEXT_PROTOBUF_VERSION}; \
+  docker-php-ext-install -j$(nproc) protobuf; \
   \
-  pecl install protobuf-${PHPEXT_PROTOBUF_VERSION}; \
-  docker-php-ext-enable protobuf; \
-  \
-  apk del .protobuf-build-deps; \
+  docker-php-source delete; \
   rm -rf /tmp/* /var/tmp/*

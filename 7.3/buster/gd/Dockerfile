@@ -2,7 +2,7 @@ FROM php:7.3-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# gd
+# PHP ext-gd
 RUN set -eux; \
   persistentDeps=" \
     libfreetype6 \
@@ -19,13 +19,23 @@ RUN set -eux; \
     libxpm-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
+    ${buildDeps} \
+  ; \
+  \
   docker-php-ext-configure gd \
     --with-freetype-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-webp-dir=/usr/include/ \
-    --with-xpm-dir=/usr/include/; \
+    --with-xpm-dir=/usr/include/ \
+  ; \
   docker-php-ext-install -j$(nproc) gd; \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

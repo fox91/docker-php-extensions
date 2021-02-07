@@ -2,15 +2,11 @@ FROM php:7.3-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_XDEBUG_VERSION=3.0.2
-
-# pecl install xdebug
+# PHP ext-xdebug
+ARG PHPEXT_XDEBUG_VERSION=3.0.2
 RUN set -eux; \
-  buildDeps=" \
-    ${PHPIZE_DEPS} \
-  "; \
-  apk add --no-cache --virtual .xdebug-build-deps $buildDeps; \
-  pecl install xdebug-$PECL_XDEBUG_VERSION; \
-  rm -rf /tmp/* /var/tmp/*; \
-  docker-php-ext-enable xdebug; \
-  apk del .xdebug-build-deps
+  pecl bundle -d /usr/src/php/ext xdebug-${PHPEXT_XDEBUG_VERSION}; \
+  docker-php-ext-install -j$(nproc) xdebug; \
+  \
+  docker-php-source delete; \
+  rm -rf /tmp/* /var/tmp/*

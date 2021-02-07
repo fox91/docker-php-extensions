@@ -2,9 +2,8 @@ FROM php:7.3-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_MEMCACHED_VERSION=3.1.5
-
-# pecl install memcached
+# PHP ext-memcached
+ARG PHPEXT_MEMCACHED_VERSION=3.1.5
 RUN set -eux; \
   persistentDeps=" \
     libmemcached11 \
@@ -16,8 +15,18 @@ RUN set -eux; \
     libzip-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends; \
-  pecl install memcached-$PECL_MEMCACHED_VERSION; \
-  docker-php-ext-enable memcached; \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
+    ${buildDeps} \
+  ; \
+  \
+  pecl bundle -d /usr/src/php/ext memcached-${PHPEXT_MEMCACHED_VERSION}; \
+  docker-php-ext-install -j$(nproc) memcached; \
+  \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
+  docker-php-source delete; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

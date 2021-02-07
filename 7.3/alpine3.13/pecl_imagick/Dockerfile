@@ -2,20 +2,21 @@ FROM php:7.3-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_IMAGICK_VERSION=3.4.4
-
-# pecl install imagick
+# PHP ext-imagick
+ARG PHPEXT_IMAGICK_VERSION=3.4.4
 RUN set -eux; \
   persistentDeps=" \
     imagemagick-libs \
   "; \
   buildDeps=" \
-    ${PHPIZE_DEPS} \
     imagemagick-dev \
   "; \
-  apk add --no-cache --virtual .imagick-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .imagick-build-deps $buildDeps; \
-  pecl install imagick-$PECL_IMAGICK_VERSION; \
-  rm -rf /tmp/* /var/tmp/*; \
-  docker-php-ext-enable imagick; \
-  apk del .imagick-build-deps
+  apk add --no-cache --virtual .imagick-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .imagick-build-deps ${buildDeps}; \
+  \
+  pecl bundle -d /usr/src/php/ext imagick-${PHPEXT_IMAGICK_VERSION}; \
+  docker-php-ext-install -j$(nproc) imagick; \
+  \
+  apk del --no-cache --no-network .imagick-build-deps; \
+  docker-php-source delete; \
+  rm -rf /tmp/* /var/tmp/*

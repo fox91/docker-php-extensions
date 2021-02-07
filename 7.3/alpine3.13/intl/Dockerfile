@@ -2,7 +2,7 @@ FROM php:7.3-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# intl
+# PHP ext-intl
 RUN set -eux; \
   persistentDeps=" \
     icu \
@@ -10,7 +10,9 @@ RUN set -eux; \
   buildDeps=" \
     icu-dev \
   "; \
-  apk add --no-cache --virtual .intl-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .intl-build-deps $buildDeps; \
+  apk add --no-cache --virtual .intl-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .intl-build-deps ${buildDeps}; \
+  \
   docker-php-ext-install -j$(nproc) intl; \
-  apk del .intl-build-deps
+  \
+  apk del --no-cache --no-network .intl-build-deps

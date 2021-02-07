@@ -2,9 +2,8 @@ FROM php:8.0-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_MEMCACHE_VERSION=8.0
-
-# pecl install memcache
+# PHP ext-memcache
+ARG PHPEXT_MEMCACHE_VERSION=8.0
 RUN set -eux; \
   persistentDeps=" \
     libzip4 \
@@ -13,8 +12,18 @@ RUN set -eux; \
     libzip-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends; \
-  pecl install memcache-$PECL_MEMCACHE_VERSION; \
-  docker-php-ext-enable memcache; \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
+    ${buildDeps} \
+  ; \
+  \
+  pecl bundle -d /usr/src/php/ext memcache-${PHPEXT_MEMCACHE_VERSION}; \
+  docker-php-ext-install -j$(nproc) memcache; \
+  \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
+  docker-php-source delete; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

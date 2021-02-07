@@ -2,7 +2,7 @@ FROM php:7.3-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# gmp
+# PHP ext-gmp
 RUN set -eux; \
   persistentDeps=" \
     gmp \
@@ -10,7 +10,9 @@ RUN set -eux; \
   buildDeps=" \
     gmp-dev \
   "; \
-  apk add --no-cache --virtual .gmp-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .gmp-build-deps $buildDeps; \
+  apk add --no-cache --virtual .gmp-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .gmp-build-deps ${buildDeps}; \
+  \
   docker-php-ext-install -j$(nproc) gmp; \
-  apk del .gmp-build-deps
+  \
+  apk del --no-cache --no-network .gmp-build-deps

@@ -2,20 +2,21 @@ FROM php:7.4-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_MCRYPT_VERSION=1.0.4
-
-# pecl install mcrypt
+# PHP ext-mcrypt
+ARG PHPEXT_MCRYPT_VERSION=1.0.4
 RUN set -eux; \
   persistentDeps=" \
     libmcrypt \
   "; \
   buildDeps=" \
-    ${PHPIZE_DEPS} \
     libmcrypt-dev \
   "; \
-  apk add --no-cache --virtual .mcrypt-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .mcrypt-build-deps $buildDeps; \
-  pecl install mcrypt-$PECL_MCRYPT_VERSION; \
-  rm -rf /tmp/* /var/tmp/*; \
-  docker-php-ext-enable mcrypt; \
-  apk del .mcrypt-build-deps
+  apk add --no-cache --virtual .mcrypt-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .mcrypt-build-deps ${buildDeps}; \
+  \
+  pecl bundle -d /usr/src/php/ext mcrypt-${PHPEXT_MCRYPT_VERSION}; \
+  docker-php-ext-install -j$(nproc) mcrypt; \
+  \
+  apk del --no-cache --no-network .mcrypt-build-deps; \
+  docker-php-source delete; \
+  rm -rf /tmp/* /var/tmp/*

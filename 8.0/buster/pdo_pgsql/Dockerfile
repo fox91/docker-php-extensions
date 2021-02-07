@@ -2,7 +2,7 @@ FROM php:8.0-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# pdo_pgsql
+# PHP ext-pdo_pgsql
 RUN set -eux; \
   persistentDeps=" \
     libpq5 \
@@ -11,7 +11,16 @@ RUN set -eux; \
     libpq-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y $persistentDeps $buildDeps --no-install-recommends; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
+    ${buildDeps} \
+  ; \
+  \
   docker-php-ext-install -j$(nproc) pdo_pgsql; \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps; \
+  \
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
+    -o APT::AutoRemove::RecommendsImportant=false \
+    -o APT::AutoRemove::SuggestsImportant=false \
+    ${buildDeps} \
+  ; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -2,20 +2,21 @@ FROM php:7.3-alpine3.13
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-ARG PECL_MEMCACHE_VERSION=4.0.5.2
-
-# pecl install memcache
+# PHP ext-memcache
+ARG PHPEXT_MEMCACHE_VERSION=4.0.5.2
 RUN set -eux; \
   persistentDeps=" \
     libzip \
   "; \
   buildDeps=" \
-    ${PHPIZE_DEPS} \
     libzip-dev \
   "; \
-  apk add --no-cache --virtual .memcache-persistent-deps $persistentDeps; \
-  apk add --no-cache --virtual .memcache-build-deps $buildDeps; \
-  pecl install memcache-$PECL_MEMCACHE_VERSION; \
-  rm -rf /tmp/* /var/tmp/*; \
-  docker-php-ext-enable memcache; \
-  apk del .memcache-build-deps
+  apk add --no-cache --virtual .memcache-persistent-deps ${persistentDeps}; \
+  apk add --no-cache --virtual .memcache-build-deps ${buildDeps}; \
+  \
+  pecl bundle -d /usr/src/php/ext memcache-${PHPEXT_MEMCACHE_VERSION}; \
+  docker-php-ext-install -j$(nproc) memcache; \
+  \
+  apk del --no-cache --no-network .memcache-build-deps; \
+  docker-php-source delete; \
+  rm -rf /tmp/* /var/tmp/*
