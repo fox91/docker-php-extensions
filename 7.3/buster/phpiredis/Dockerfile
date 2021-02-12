@@ -19,7 +19,7 @@ RUN set -eux; \
   \
   mkdir -p /usr/src/php/ext/phpiredis; \
   curl -fsSL https://github.com/nrk/phpiredis/archive/v${PHPEXT_PHPIREDIS_VERSION}.tar.gz \
-    | tar xz -C "/usr/src/php/ext/phpiredis" --strip 1; \
+    | tar -xzC "/usr/src/php/ext/phpiredis" --strip 1; \
   \
   docker-php-ext-configure phpiredis \
     --enable-phpiredis \
