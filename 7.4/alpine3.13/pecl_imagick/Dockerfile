@@ -3,7 +3,7 @@ FROM php:7.4-alpine3.13
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-imagick
-ARG PHPEXT_IMAGICK_VERSION=3.4.4
+ARG PHPEXT_IMAGICK_VERSION=3.5.0
 RUN set -eux; \
   persistentDeps=" \
     imagemagick-libs \

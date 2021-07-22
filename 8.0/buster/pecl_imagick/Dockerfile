@@ -2,19 +2,23 @@ FROM php:8.0-buster
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# PHP ext-mongodb
-ARG PHPEXT_MONGODB_VERSION=1.10.0
+# PHP ext-imagick
+ARG PHPEXT_IMAGICK_VERSION=3.5.0
 RUN set -eux; \
+  persistentDeps=" \
+    libmagickwand-6.q16-6 \
+  "; \
   buildDeps=" \
-    libssl-dev \
+    libmagickwand-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
     ${buildDeps} \
   ; \
   \
-  pecl bundle -d /usr/src/php/ext mongodb-${PHPEXT_MONGODB_VERSION}; \
-  docker-php-ext-install -j$(nproc) mongodb; \
+  pecl bundle -d /usr/src/php/ext imagick-${PHPEXT_IMAGICK_VERSION}; \
+  docker-php-ext-install -j$(nproc) imagick; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \

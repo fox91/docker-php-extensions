@@ -3,7 +3,7 @@ FROM php:8.0-alpine3.13
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-redis
-ARG PHPEXT_REDIS_VERSION=5.3.2
+ARG PHPEXT_REDIS_VERSION=5.3.4
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext redis-${PHPEXT_REDIS_VERSION}; \
   docker-php-ext-install -j$(nproc) redis; \

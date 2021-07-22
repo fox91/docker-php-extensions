@@ -3,7 +3,7 @@ FROM php:7.3-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-mongodb
-ARG PHPEXT_MONGODB_VERSION=1.9.0
+ARG PHPEXT_MONGODB_VERSION=1.10.0
 RUN set -eux; \
   buildDeps=" \
     libssl-dev \
