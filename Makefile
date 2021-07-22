@@ -551,13 +551,13 @@ cleanup:
 		; \
 	done
 
-# gd
+# single_test
 
-.PHONY: gd
-gd: gd-build gd-test-version gd-test-info
+.PHONY: single_test
+single_test: single_test-build single_test-test-version single_test-test-info
 
-.PHONY: gd-build
-gd-build:
+.PHONY: single_test-build
+single_test-build:
 	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -567,8 +567,8 @@ gd-build:
 		docker build -t my/php:$$php_v-$$os_v-$$ext_n $$php_v/$$os_v/$$ext_n; \
 	done
 
-.PHONY: gd-clean
-gd-clean:
+.PHONY: single_test-clean
+single_test-clean:
 	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -578,8 +578,8 @@ gd-clean:
 		docker rmi -f my/php:$$php_v-$$os_v-$$ext_n; \
 	done
 
-.PHONY: gd-test-version
-gd-test-version:
+.PHONY: single_test-test-version
+single_test-test-version:
 	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -591,8 +591,8 @@ gd-test-version:
 		; \
 	done
 
-.PHONY: gd-test-info
-gd-test-info:
+.PHONY: single_test-test-info
+single_test-test-info:
 	set -eu; \
 	for file in $(shell find $(CURDIR) -type d -name gd | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$file))); \

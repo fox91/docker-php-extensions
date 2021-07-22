@@ -7,6 +7,7 @@ ARG PHPEXT_IMAGICK_VERSION=3.5.0
 RUN set -eux; \
   persistentDeps=" \
     imagemagick-libs \
+    libgomp \
   "; \
   buildDeps=" \
     imagemagick-dev \
