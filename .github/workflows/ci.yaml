@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    name: "PHP: ${{ matrix.php_version }}, OS: ${{ matrix.os_version }}"
     runs-on: ubuntu-latest
     strategy:
       matrix:

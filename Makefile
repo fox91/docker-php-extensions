@@ -64,7 +64,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php --version \
 		; \
 	done
@@ -78,7 +78,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -m \
 				| grep -i "$$search" \
 		; \
@@ -93,7 +93,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
@@ -107,7 +107,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			sh -c 'set -eu; \
 				[ -d "/usr/src/php" ] && echo "/usr/src/php Dirty" && exit 1 || echo "/usr/src/php Clean"; \
 				[ "$$(ls -A /tmp)" ] && echo "/tmp/* Dirty" && exit 1 || echo "/tmp/* Clean"; \
@@ -151,7 +151,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php --version \
 		; \
 	done
@@ -165,7 +165,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -m \
 				| grep -i "$$search" \
 		; \
@@ -180,7 +180,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
@@ -194,7 +194,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			sh -c 'set -eu; \
 				[ -d "/usr/src/php" ] && echo "/usr/src/php Dirty" && exit 1 || echo "/usr/src/php Clean"; \
 				[ "$$(ls -A /tmp)" ] && echo "/tmp/* Dirty" && exit 1 || echo "/tmp/* Clean"; \
@@ -238,7 +238,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php --version \
 		; \
 	done
@@ -252,7 +252,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -m \
 				| grep -i "$$search" \
 		; \
@@ -267,7 +267,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
@@ -281,7 +281,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			sh -c 'set -eu; \
 				[ -d "/usr/src/php" ] && echo "/usr/src/php Dirty" && exit 1 || echo "/usr/src/php Clean"; \
 				[ "$$(ls -A /tmp)" ] && echo "/tmp/* Dirty" && exit 1 || echo "/tmp/* Clean"; \
@@ -325,7 +325,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php --version \
 		; \
 	done
@@ -339,7 +339,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -m \
 				| grep -i "$$search" \
 		; \
@@ -354,7 +354,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
@@ -368,7 +368,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			sh -c 'set -eu; \
 				[ -d "/usr/src/php" ] && echo "/usr/src/php Dirty" && exit 1 || echo "/usr/src/php Clean"; \
 				[ "$$(ls -A /tmp)" ] && echo "/tmp/* Dirty" && exit 1 || echo "/tmp/* Clean"; \
@@ -412,7 +412,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php --version \
 		; \
 	done
@@ -426,7 +426,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -m \
 				| grep -i "$$search" \
 		; \
@@ -441,7 +441,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
@@ -455,7 +455,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			sh -c 'set -eu; \
 				[ -d "/usr/src/php" ] && echo "/usr/src/php Dirty" && exit 1 || echo "/usr/src/php Clean"; \
 				[ "$$(ls -A /tmp)" ] && echo "/tmp/* Dirty" && exit 1 || echo "/tmp/* Clean"; \
@@ -499,7 +499,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php --version \
 		; \
 	done
@@ -513,7 +513,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -m \
 				| grep -i "$$search" \
 		; \
@@ -528,7 +528,7 @@ cleanup:
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
@@ -542,7 +542,7 @@ cleanup:
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			sh -c 'set -eu; \
 				[ -d "/usr/src/php" ] && echo "/usr/src/php Dirty" && exit 1 || echo "/usr/src/php Clean"; \
 				[ "$$(ls -A /tmp)" ] && echo "/tmp/* Dirty" && exit 1 || echo "/tmp/* Clean"; \
@@ -586,7 +586,7 @@ gd-test-version:
 		os_v=$$(basename $$(dirname $$file)); \
 		ext_n=$$(basename $$file); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php --version \
 		; \
 	done
@@ -600,7 +600,7 @@ gd-test-info:
 		ext_n=$$(basename $$file); \
 		echo "-=-=- \"Ext: $$ext_n, PHP: $$php_v, OS: $$os_v\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
-		docker run -it --rm my/php:$$php_v-$$os_v-$$ext_n \
+		docker run --rm my/php:$$php_v-$$os_v-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
