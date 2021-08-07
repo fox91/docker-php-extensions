@@ -3,7 +3,7 @@ FROM php:8.0-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-imagick
-ARG PHPEXT_IMAGICK_VERSION=3.5.0
+ARG PHPEXT_IMAGICK_VERSION=3.5.1
 RUN set -eux; \
   persistentDeps=" \
     libmagickwand-6.q16-6 \

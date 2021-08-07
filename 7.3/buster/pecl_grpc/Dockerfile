@@ -3,7 +3,7 @@ FROM php:7.3-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-grpc
-ARG PHPEXT_GRPC_VERSION=1.38.0
+ARG PHPEXT_GRPC_VERSION=1.39.0
 RUN set -eux; \
   buildDeps=" \
     libzip-dev \
