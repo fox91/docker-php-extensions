@@ -2,42 +2,42 @@
 all: 7.3 7.4 8.0
 
 .PHONY: 7.3
-7.3: 7.3-buster 7.3-alpine3.14
+7.3: 7.3-bullseye 7.3-alpine3.14
 
 .PHONY: 7.4
-7.4: 7.4-buster 7.4-alpine3.14
+7.4: 7.4-bullseye 7.4-alpine3.14
 
 .PHONY: 8.0
-8.0: 8.0-buster 8.0-alpine3.14
+8.0: 8.0-bullseye 8.0-alpine3.14
 
-.PHONY: buster
-buster: 7.3-buster 7.4-buster 8.0-buster
+.PHONY: bullseye
+bullseye: 7.3-bullseye 7.4-bullseye 8.0-bullseye
 
 .PHONY: alpine3.14
 alpine3.14: 7.3-alpine3.14 7.4-alpine3.14 8.0-alpine3.14
 
 .PHONY: clean
-clean: 7.3-buster-clean 7.3-alpine3.14-clean 7.4-buster-clean 7.4-alpine3.14-clean 8.0-buster-clean 8.0-alpine3.14-clean cleanup
+clean: 7.3-bullseye-clean 7.3-alpine3.14-clean 7.4-bullseye-clean 7.4-alpine3.14-clean 8.0-bullseye-clean 8.0-alpine3.14-clean cleanup
 
 .PHONY: cleanup
 cleanup:
 	set -eu; \
-	for os_v in 'buster' 'alpine3.14'; do \
+	for os_v in 'bullseye' 'alpine3.14'; do \
 		for php_v in '7.3' '7.4' '8.0'; do \
 			echo "-=-=- \"PHP: $$php_v, OS: $$os_v\" =-=-="; \
 			docker rmi -f php:$$php_v-$$os_v; \
 		done \
 	done
 
-# 7.3-buster
+# 7.3-bullseye
 
-.PHONY: 7.3-buster
-7.3-buster: 7.3-buster-build 7.3-buster-test-version 7.3-buster-test-module 7.3-buster-test-info 7.3-buster-test-tmp-files
+.PHONY: 7.3-bullseye
+7.3-bullseye: 7.3-bullseye-build 7.3-bullseye-test-version 7.3-bullseye-test-module 7.3-bullseye-test-info 7.3-bullseye-test-tmp-files
 
-.PHONY: 7.3-buster-build
-7.3-buster-build:
+.PHONY: 7.3-bullseye-build
+7.3-bullseye-build:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.3/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -45,10 +45,10 @@ cleanup:
 		docker build -t my/php:$$php_v-$$os_v-$$ext_n $$php_v/$$os_v/$$ext_n; \
 	done
 
-.PHONY: 7.3-buster-clean
-7.3-buster-clean:
+.PHONY: 7.3-bullseye-clean
+7.3-bullseye-clean:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.3/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -56,10 +56,10 @@ cleanup:
 		docker rmi -f my/php:$$php_v-$$os_v-$$ext_n; \
 	done
 
-.PHONY: 7.3-buster-test-version
-7.3-buster-test-version:
+.PHONY: 7.3-bullseye-test-version
+7.3-bullseye-test-version:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.3/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -69,10 +69,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 7.3-buster-test-module
-7.3-buster-test-module:
+.PHONY: 7.3-bullseye-test-module
+7.3-bullseye-test-module:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.3/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -84,10 +84,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 7.3-buster-test-info
-7.3-buster-test-info:
+.PHONY: 7.3-bullseye-test-info
+7.3-bullseye-test-info:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.3/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -99,10 +99,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 7.3-buster-test-tmp-files
-7.3-buster-test-tmp-files:
+.PHONY: 7.3-bullseye-test-tmp-files
+7.3-bullseye-test-tmp-files:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.3/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.3/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -203,15 +203,15 @@ cleanup:
 		; \
 	done
 
-# 7.4-buster
+# 7.4-bullseye
 
-.PHONY: 7.4-buster
-7.4-buster: 7.4-buster-build 7.4-buster-test-version 7.4-buster-test-module 7.4-buster-test-info 7.4-buster-test-tmp-files
+.PHONY: 7.4-bullseye
+7.4-bullseye: 7.4-bullseye-build 7.4-bullseye-test-version 7.4-bullseye-test-module 7.4-bullseye-test-info 7.4-bullseye-test-tmp-files
 
-.PHONY: 7.4-buster-build
-7.4-buster-build:
+.PHONY: 7.4-bullseye-build
+7.4-bullseye-build:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.4/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -219,10 +219,10 @@ cleanup:
 		docker build -t my/php:$$php_v-$$os_v-$$ext_n $$php_v/$$os_v/$$ext_n; \
 	done
 
-.PHONY: 7.4-buster-clean
-7.4-buster-clean:
+.PHONY: 7.4-bullseye-clean
+7.4-bullseye-clean:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.4/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -230,10 +230,10 @@ cleanup:
 		docker rmi -f my/php:$$php_v-$$os_v-$$ext_n; \
 	done
 
-.PHONY: 7.4-buster-test-version
-7.4-buster-test-version:
+.PHONY: 7.4-bullseye-test-version
+7.4-bullseye-test-version:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.4/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -243,10 +243,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 7.4-buster-test-module
-7.4-buster-test-module:
+.PHONY: 7.4-bullseye-test-module
+7.4-bullseye-test-module:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.4/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -258,10 +258,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 7.4-buster-test-info
-7.4-buster-test-info:
+.PHONY: 7.4-bullseye-test-info
+7.4-bullseye-test-info:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.4/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -273,10 +273,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 7.4-buster-test-tmp-files
-7.4-buster-test-tmp-files:
+.PHONY: 7.4-bullseye-test-tmp-files
+7.4-bullseye-test-tmp-files:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/7.4/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/7.4/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -377,15 +377,15 @@ cleanup:
 		; \
 	done
 
-# 8.0-buster
+# 8.0-bullseye
 
-.PHONY: 8.0-buster
-8.0-buster: 8.0-buster-build 8.0-buster-test-version 8.0-buster-test-module 8.0-buster-test-info 8.0-buster-test-tmp-files
+.PHONY: 8.0-bullseye
+8.0-bullseye: 8.0-bullseye-build 8.0-bullseye-test-version 8.0-bullseye-test-module 8.0-bullseye-test-info 8.0-bullseye-test-tmp-files
 
-.PHONY: 8.0-buster-build
-8.0-buster-build:
+.PHONY: 8.0-bullseye-build
+8.0-bullseye-build:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/8.0/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/8.0/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -393,10 +393,10 @@ cleanup:
 		docker build -t my/php:$$php_v-$$os_v-$$ext_n $$php_v/$$os_v/$$ext_n; \
 	done
 
-.PHONY: 8.0-buster-clean
-8.0-buster-clean:
+.PHONY: 8.0-bullseye-clean
+8.0-bullseye-clean:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/8.0/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/8.0/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -404,10 +404,10 @@ cleanup:
 		docker rmi -f my/php:$$php_v-$$os_v-$$ext_n; \
 	done
 
-.PHONY: 8.0-buster-test-version
-8.0-buster-test-version:
+.PHONY: 8.0-bullseye-test-version
+8.0-bullseye-test-version:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/8.0/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/8.0/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -417,10 +417,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 8.0-buster-test-module
-8.0-buster-test-module:
+.PHONY: 8.0-bullseye-test-module
+8.0-bullseye-test-module:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/8.0/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/8.0/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -432,10 +432,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 8.0-buster-test-info
-8.0-buster-test-info:
+.PHONY: 8.0-bullseye-test-info
+8.0-bullseye-test-info:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/8.0/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/8.0/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
@@ -447,10 +447,10 @@ cleanup:
 		; \
 	done
 
-.PHONY: 8.0-buster-test-tmp-files
-8.0-buster-test-tmp-files:
+.PHONY: 8.0-bullseye-test-tmp-files
+8.0-bullseye-test-tmp-files:
 	set -eu; \
-	for file in $(shell find $(CURDIR)/8.0/buster -type f -name Dockerfile | sort); do \
+	for file in $(shell find $(CURDIR)/8.0/bullseye -type f -name Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
 		ext_n=$$(basename $$(dirname $$file)); \
