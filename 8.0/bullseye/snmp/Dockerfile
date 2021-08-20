@@ -5,14 +5,16 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 # PHP ext-snmp
 RUN set -eux; \
   persistentDeps=" \
-    libsnmp30 \
+    libsnmp40 \
     snmp-mibs-downloader \
   "; \
   buildDeps=" \
     libsnmp-dev \
   "; \
-  echo 'deb http://security.debian.org/ bullseye/updates main contrib non-free' >> /etc/apt/sources.list; \
-  echo 'deb http://httpredir.debian.org/debian/ bullseye main contrib non-free' >> /etc/apt/sources.list; \
+  sed -i \
+    -e 's|\ main$|\ main\ contrib\ non-free|g' \
+    /etc/apt/sources.list \
+  ; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ${persistentDeps} \
