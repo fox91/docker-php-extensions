@@ -3,7 +3,7 @@ FROM php:8.0-alpine3.14
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-apcu
-ARG PHPEXT_APCU_VERSION=5.1.20
+ARG PHPEXT_APCU_VERSION=5.1.21
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext apcu-${PHPEXT_APCU_VERSION}; \
   docker-php-ext-install -j$(nproc) apcu; \

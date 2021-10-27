@@ -3,7 +3,7 @@ FROM php:7.4-alpine3.14
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-zip
-ARG PHPEXT_ZIP_VERSION=1.19.3
+ARG PHPEXT_ZIP_VERSION=1.20.0
 RUN set -eux; \
   persistentDeps=" \
     libzip \

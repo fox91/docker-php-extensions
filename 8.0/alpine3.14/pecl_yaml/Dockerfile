@@ -3,7 +3,7 @@ FROM php:8.0-alpine3.14
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-yaml
-ARG PHPEXT_YAML_VERSION=2.2.1
+ARG PHPEXT_YAML_VERSION=2.2.2
 RUN set -eux; \
   persistentDeps=" \
     yaml \
