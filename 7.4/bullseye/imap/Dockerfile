@@ -1,30 +1,23 @@
-FROM php:8.0-bullseye
+FROM php:7.4-bullseye
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# PHP ext-phpiredis
-ARG PHPEXT_PHPIREDIS_VERSION=1.0.1
+# PHP ext-imap
 RUN set -eux; \
-  persistentDeps=" \
-    libhiredis0.14 \
-  "; \
   buildDeps=" \
-    libhiredis-dev \
+    libc-client-dev \
+    libkrb5-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    ${persistentDeps} \
     ${buildDeps} \
   ; \
   \
-  mkdir -p /usr/src/php/ext/phpiredis; \
-  curl -fsSL https://github.com/nrk/phpiredis/archive/v${PHPEXT_PHPIREDIS_VERSION}.tar.gz \
-    | tar -xzC "/usr/src/php/ext/phpiredis" --strip 1; \
-  \
-  docker-php-ext-configure phpiredis \
-    --enable-phpiredis \
+  docker-php-ext-configure imap \
+    --with-imap-ssl \
+    --with-kerberos \
   ; \
-  docker-php-ext-install -j$(nproc) phpiredis; \
+  docker-php-ext-install -j$(nproc) imap; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \

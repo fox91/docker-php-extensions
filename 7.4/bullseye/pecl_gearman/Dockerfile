@@ -1,15 +1,15 @@
-FROM php:8.0-bullseye
+FROM php:7.4-bullseye
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# PHP ext-phpiredis
-ARG PHPEXT_PHPIREDIS_VERSION=1.0.1
+# PHP ext-gearman
+ARG PHPEXT_GEARMAN_VERSION=2.1.0
 RUN set -eux; \
   persistentDeps=" \
-    libhiredis0.14 \
+    libgearman8 \
   "; \
   buildDeps=" \
-    libhiredis-dev \
+    libgearman-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -17,14 +17,8 @@ RUN set -eux; \
     ${buildDeps} \
   ; \
   \
-  mkdir -p /usr/src/php/ext/phpiredis; \
-  curl -fsSL https://github.com/nrk/phpiredis/archive/v${PHPEXT_PHPIREDIS_VERSION}.tar.gz \
-    | tar -xzC "/usr/src/php/ext/phpiredis" --strip 1; \
-  \
-  docker-php-ext-configure phpiredis \
-    --enable-phpiredis \
-  ; \
-  docker-php-ext-install -j$(nproc) phpiredis; \
+  pecl bundle -d /usr/src/php/ext gearman-${PHPEXT_GEARMAN_VERSION}; \
+  docker-php-ext-install -j$(nproc) gearman; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \
