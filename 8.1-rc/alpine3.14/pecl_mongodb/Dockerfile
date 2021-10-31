@@ -1,4 +1,4 @@
-FROM php:8.0-alpine3.14
+FROM php:8.1-rc-alpine3.14
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 

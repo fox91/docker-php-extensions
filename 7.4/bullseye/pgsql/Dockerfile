@@ -2,24 +2,25 @@ FROM php:7.4-bullseye
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# PHP ext-mongodb
-ARG PHPEXT_MONGODB_VERSION=1.11.0
+# PHP ext-pgsql
 RUN set -eux; \
+  persistentDeps=" \
+    libpq5 \
+  "; \
   buildDeps=" \
-    libssl-dev \
+    libpq-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    ${persistentDeps} \
     ${buildDeps} \
   ; \
   \
-  pecl bundle -d /usr/src/php/ext mongodb-${PHPEXT_MONGODB_VERSION}; \
-  docker-php-ext-install -j$(nproc) mongodb; \
+  docker-php-ext-install -j$(nproc) pgsql; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \
     -o APT::AutoRemove::SuggestsImportant=false \
     ${buildDeps} \
   ; \
-  docker-php-source delete; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

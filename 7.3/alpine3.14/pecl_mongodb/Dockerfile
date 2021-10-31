@@ -3,7 +3,7 @@ FROM php:7.3-alpine3.14
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-mongodb
-ARG PHPEXT_MONGODB_VERSION=1.10.0
+ARG PHPEXT_MONGODB_VERSION=1.11.0
 RUN set -eux; \
   persistentDeps=" \
     openssl \
