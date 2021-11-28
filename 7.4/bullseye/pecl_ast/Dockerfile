@@ -3,7 +3,7 @@ FROM php:7.4-bullseye
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-ast
-ARG PHPEXT_AST_VERSION=1.0.14
+ARG PHPEXT_AST_VERSION=1.0.16
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext ast-${PHPEXT_AST_VERSION}; \
   docker-php-ext-install -j$(nproc) ast; \
