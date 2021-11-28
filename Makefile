@@ -1,4 +1,4 @@
-PHP_V = 7.4
+PHP_V = 8.0
 OS_V = bullseye
 
 .PHONY: all
