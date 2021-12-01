@@ -10,70 +10,69 @@ all: test-version test-module test-info test-tmp-files
 .PHONY: build
 build:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell find $(CURDIR)/$(PHP_V)/$(OS_V)/ -type f -name Dockerfile | sort); do \
 		ext_n=$$(basename $$(dirname $$file)); \
-		echo "-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
+		echo "::group::-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
 		docker build -t my/php:$(PHP_V)-$(OS_V)-$$ext_n $(PHP_V)/$(OS_V)/$$ext_n; \
+		echo "::endgroup::"; \
 	done
 
 .PHONY: clean
 clean:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell find $(CURDIR)/$(PHP_V)/$(OS_V) -type f -name Dockerfile | sort); do \
 		ext_n=$$(basename $$(dirname $$file)); \
-		echo "-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
+		echo "::group::-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
 		docker rmi -f my/php:$(PHP_V)-$(OS_V)-$$ext_n; \
+		echo "::endgroup::"; \
 	done
 
 .PHONY: test-version
 test-version:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell find $(CURDIR)/$(PHP_V)/$(OS_V) -type f -name Dockerfile | sort); do \
 		ext_n=$$(basename $$(dirname $$file)); \
-		echo "-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
+		echo "::group::-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
 		docker run --rm my/php:$(PHP_V)-$(OS_V)-$$ext_n \
 			php --version \
 		; \
+		echo "::endgroup::"; \
 	done
 
 .PHONY: test-module
 test-module:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell find $(CURDIR)/$(PHP_V)/$(OS_V) -type f -name Dockerfile | sort); do \
 		ext_n=$$(basename $$(dirname $$file)); \
-		echo "-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
+		echo "::group::-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
 		docker run --rm my/php:$(PHP_V)-$(OS_V)-$$ext_n \
 			php -m \
 				| grep -i "$$search" \
 		; \
+		echo "::endgroup::"; \
 	done
 
 .PHONY: test-info
 test-info:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell find $(CURDIR)/$(PHP_V)/$(OS_V) -type f -name Dockerfile | sort); do \
 		ext_n=$$(basename $$(dirname $$file)); \
-		echo "-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
+		echo "::group::-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
 		search=$$(echo $$ext_n | sed -e 's|pecl_||'); \
 		docker run --rm my/php:$(PHP_V)-$(OS_V)-$$ext_n \
 			php -i \
 				| grep "$$search" \
 		; \
+		echo "::endgroup::"; \
 	done
 
 .PHONY: test-tmp-files
 test-tmp-files:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell find $(CURDIR)/$(PHP_V)/$(OS_V) -type f -name Dockerfile | sort); do \
 		ext_n=$$(basename $$(dirname $$file)); \
-		echo "-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
+		echo "::group::-=-=- $@ \"Ext: $$ext_n, PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
 		docker run --rm my/php:$(PHP_V)-$(OS_V)-$$ext_n \
 			sh -c 'set -eu; \
 				[ -d "/usr/src/php" ] && echo "/usr/src/php Dirty" && exit 1 || echo "/usr/src/php Clean"; \
@@ -81,6 +80,7 @@ test-tmp-files:
 				[ "$$(ls -A /var/tmp)" ] && echo "/var/tmp/* Dirty" && exit 1 || echo "/var/tmp/* Clean"; \
 			' \
 		; \
+		echo "::endgroup::"; \
 	done
 
 .PHONY: new
@@ -92,7 +92,6 @@ new-test: new-test-version new-test-module new-test-info new-test-tmp-files
 .PHONY: new-build
 new-build:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell git diff --cached --name-only | grep Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -104,7 +103,6 @@ new-build:
 .PHONY: new-clean
 new-clean:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell git diff --cached --name-only | grep Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -116,7 +114,6 @@ new-clean:
 .PHONY: new-test-version
 new-test-version:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell git diff --cached --name-only | grep Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -130,7 +127,6 @@ new-test-version:
 .PHONY: new-test-module
 new-test-module:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell git diff --cached --name-only | grep Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -146,7 +142,6 @@ new-test-module:
 .PHONY: new-test-info
 new-test-info:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell git diff --cached --name-only | grep Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
@@ -162,7 +157,6 @@ new-test-info:
 .PHONY: new-test-tmp-files
 new-test-tmp-files:
 	@set -eu; \
-	echo "-= $@ =-"; \
 	for file in $(shell git diff --cached --name-only | grep Dockerfile | sort); do \
 		php_v=$$(basename $$(dirname $$(dirname $$(dirname $$file)))); \
 		os_v=$$(basename $$(dirname $$(dirname $$file))); \
