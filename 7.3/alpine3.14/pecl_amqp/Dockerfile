@@ -3,7 +3,7 @@ FROM php:7.3-alpine3.14
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-amqp
-ARG PHPEXT_AMQP_VERSION=1.10.2
+ARG PHPEXT_AMQP_VERSION=1.11.0
 RUN set -eux; \
   persistentDeps=" \
     rabbitmq-c \
