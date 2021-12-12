@@ -3,7 +3,7 @@ FROM php:8.1-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-pdo_sqlsrv
-ARG PHPEXT_PDO_SQLSRV_VERSION=5.10.0beta1
+ARG PHPEXT_PDO_SQLSRV_VERSION=5.10.0beta2
 RUN set -eux; \
   aptDeps=" \
     gnupg \
