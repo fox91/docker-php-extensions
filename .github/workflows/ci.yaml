@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         php_version: ["7.4", "8.0", "8.1"]
-        os_version: ["alpine3.14", "bullseye", "buster"]
+        os_version: ["alpine3.15", "bullseye", "buster"]
     steps:
       -
         name: Checkout
