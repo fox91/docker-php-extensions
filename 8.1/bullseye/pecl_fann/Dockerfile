@@ -1,15 +1,15 @@
-FROM php:8.0-bullseye
+FROM php:8.1-bullseye
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# PHP ext-imagick
-ARG PHPEXT_IMAGICK_VERSION=3.7.0
+# PHP ext-fann
+ARG PHPEXT_FANN_VERSION=1.2.0RC2
 RUN set -eux; \
   persistentDeps=" \
-    libmagickwand-6.q16-6 \
+    libfann2 \
   "; \
   buildDeps=" \
-    libmagickwand-dev \
+    libfann-dev \
   "; \
   DEBIAN_FRONTEND=noninteractive apt-get update; \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -17,8 +17,8 @@ RUN set -eux; \
     ${buildDeps} \
   ; \
   \
-  pecl bundle -d /usr/src/php/ext imagick-${PHPEXT_IMAGICK_VERSION}; \
-  docker-php-ext-install -j$(nproc) imagick; \
+  pecl bundle -d /usr/src/php/ext fann-${PHPEXT_FANN_VERSION}; \
+  docker-php-ext-install -j$(nproc) fann; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \

@@ -3,7 +3,7 @@ FROM php:8.0-bullseye
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-fann
-ARG PHPEXT_FANN_VERSION=1.2.0RC1
+ARG PHPEXT_FANN_VERSION=1.2.0RC2
 RUN set -eux; \
   persistentDeps=" \
     libfann2 \
