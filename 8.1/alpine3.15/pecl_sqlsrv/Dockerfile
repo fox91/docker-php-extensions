@@ -3,7 +3,7 @@ FROM php:8.1-alpine3.15
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-sqlsrv
-ARG PHPEXT_SQLSRV_VERSION=5.10.0beta2
+ARG PHPEXT_SQLSRV_VERSION=5.10.0
 RUN set -eux; \
   apkDeps=" \
     gnupg \

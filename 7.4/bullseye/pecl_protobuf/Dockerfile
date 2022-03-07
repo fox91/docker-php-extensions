@@ -3,7 +3,7 @@ FROM php:7.4-bullseye
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-protobuf
-ARG PHPEXT_PROTOBUF_VERSION=3.19.3
+ARG PHPEXT_PROTOBUF_VERSION=3.19.4
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext protobuf-${PHPEXT_PROTOBUF_VERSION}; \
   docker-php-ext-install -j$(nproc) protobuf; \

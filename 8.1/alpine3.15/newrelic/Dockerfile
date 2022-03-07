@@ -1,11 +1,11 @@
-FROM php:8.0-bullseye
+FROM php:8.1-alpine3.15
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-newrelic
 ARG PHPEXT_NEWRELIC_VERSION=9.19.0.309
 RUN set -eux; \
-  curl -fsSL https://download.newrelic.com/php_agent/archive/${PHPEXT_NEWRELIC_VERSION}/newrelic-php5-${PHPEXT_NEWRELIC_VERSION}-linux.tar.gz \
+  curl -fsSL https://download.newrelic.com/php_agent/release/newrelic-php5-${PHPEXT_NEWRELIC_VERSION}-linux-musl.tar.gz \
     | tar -xzC /tmp; \
   export NR_INSTALL_USE_CP_NOT_LN=1; \
   /tmp/newrelic-php5-*/newrelic-install install; \

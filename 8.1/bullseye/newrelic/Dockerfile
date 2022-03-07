@@ -1,4 +1,4 @@
-FROM php:8.0-bullseye
+FROM php:8.1-bullseye
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 

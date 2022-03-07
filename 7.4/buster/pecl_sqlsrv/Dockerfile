@@ -3,7 +3,7 @@ FROM php:7.4-buster
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-sqlsrv
-ARG PHPEXT_SQLSRV_VERSION=5.9.0
+ARG PHPEXT_SQLSRV_VERSION=5.10.0
 RUN set -eux; \
   aptDeps=" \
     gnupg \
