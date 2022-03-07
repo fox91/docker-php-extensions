@@ -11,13 +11,13 @@ RUN set -eux; \
   apk add --no-cache --virtual .sqlsrv-apk-deps ${apkDeps}; \
   \
   cd /tmp; \
-  curl -fsSL -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.8.1.1-1_amd64.apk; \
-  curl -fsSL -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.8.1.1-1_amd64.sig; \
+  curl -fsSL -O https://download.microsoft.com/download/b/9/f/b9f3cce4-3925-46d4-9f46-da08869c6486/msodbcsql18_18.0.1.1-1_amd64.apk; \
+  curl -fsSL -O https://download.microsoft.com/download/b/9/f/b9f3cce4-3925-46d4-9f46-da08869c6486/msodbcsql18_18.0.1.1-1_amd64.sig; \
   curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --import -; \
-  gpg --verify msodbcsql17_17.8.1.1-1_amd64.sig msodbcsql17_17.8.1.1-1_amd64.apk; \
+  gpg --verify msodbcsql18_18.0.1.1-1_amd64.sig msodbcsql18_18.0.1.1-1_amd64.apk; \
   \
   apk del --no-cache --no-network .sqlsrv-apk-deps; \
-  apk add --allow-untrusted msodbcsql17_17.8.1.1-1_amd64.apk; \
+  apk add --allow-untrusted msodbcsql18_18.0.1.1-1_amd64.apk; \
   \
   buildDeps=" \
     unixodbc-dev \

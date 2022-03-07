@@ -1,4 +1,4 @@
-FROM php:8.1-buster
+FROM php:8.1-bullseye
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
@@ -14,8 +14,8 @@ RUN set -eux; \
   ; \
   \
   curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-  curl -fsSL https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
-  echo "msodbcsql17 msodbcsql/ACCEPT_EULA boolean true" | debconf-set-selections; \
+  curl -fsSL https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
+  echo "msodbcsql18 msodbcsql/ACCEPT_EULA boolean true" | debconf-set-selections; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \
@@ -24,7 +24,7 @@ RUN set -eux; \
   ; \
   \
   persistentDeps=" \
-    msodbcsql17 \
+    msodbcsql18 \
   "; \
   buildDeps=" \
     unixodbc-dev \

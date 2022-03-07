@@ -1,9 +1,9 @@
-FROM php:8.0-buster
+FROM php:8.1-bullseye
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
-# PHP ext-sqlsrv
-ARG PHPEXT_SQLSRV_VERSION=5.10.0
+# PHP ext-pdo_sqlsrv
+ARG PHPEXT_PDO_SQLSRV_VERSION=5.10.0
 RUN set -eux; \
   aptDeps=" \
     gnupg \
@@ -14,8 +14,8 @@ RUN set -eux; \
   ; \
   \
   curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-  curl -fsSL https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
-  echo "msodbcsql17 msodbcsql/ACCEPT_EULA boolean true" | debconf-set-selections; \
+  curl -fsSL https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
+  echo "msodbcsql18 msodbcsql/ACCEPT_EULA boolean true" | debconf-set-selections; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \
@@ -24,7 +24,7 @@ RUN set -eux; \
   ; \
   \
   persistentDeps=" \
-    msodbcsql17 \
+    msodbcsql18 \
   "; \
   buildDeps=" \
     unixodbc-dev \
@@ -35,8 +35,8 @@ RUN set -eux; \
     ${buildDeps} \
   ; \
   \
-  pecl bundle -d /usr/src/php/ext sqlsrv-${PHPEXT_SQLSRV_VERSION}; \
-  docker-php-ext-install -j$(nproc) sqlsrv; \
+  pecl bundle -d /usr/src/php/ext pdo_sqlsrv-${PHPEXT_PDO_SQLSRV_VERSION}; \
+  docker-php-ext-install -j$(nproc) pdo_sqlsrv; \
   \
   DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove \
     -o APT::AutoRemove::RecommendsImportant=false \
