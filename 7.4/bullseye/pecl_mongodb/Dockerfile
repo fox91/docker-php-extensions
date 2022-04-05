@@ -3,7 +3,7 @@ FROM php:7.4-bullseye
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-mongodb
-ARG PHPEXT_MONGODB_VERSION=1.12.1
+ARG PHPEXT_MONGODB_VERSION=1.13.0
 RUN set -eux; \
   buildDeps=" \
     libssl-dev \
