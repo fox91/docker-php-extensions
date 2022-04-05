@@ -13,7 +13,7 @@ Branch | Initial Release | Active Support Until | Security Support Until
 ## Supported PHP extensions
 
 Extension | PHP `7.4` `bullseye` | PHP `7.4` `alpine3.15` | PHP `8.0` `bullseye` | PHP `8.0` `alpine3.15` | PHP `8.1` `bullseye` | PHP `8.1` `alpine3.15`
-----------|:--------------------:|:----------------------:|:--------------------:|:----------------------:|:--------------------:|-----------------------:
+----------|:--------------------:|:----------------------:|:--------------------:|:----------------------:|:--------------------:|:----------------------:
 [`amqp`](https://pecl.php.net/package/amqp) _PECL_ | `(1.11.0)` [:whale:](7.4/bullseye/pecl_amqp/Dockerfile) | `(1.11.0)` [:whale:](7.4/alpine3.15/pecl_amqp/Dockerfile) | `(1.11.0)` [:whale:](8.0/bullseye/pecl_amqp/Dockerfile) | `(1.11.0)` [:whale:](8.0/alpine3.15/pecl_amqp/Dockerfile) | `(1.11.0)` [:whale:](8.1/bullseye/pecl_amqp/Dockerfile) | `(1.11.0)` [:whale:](8.1/alpine3.15/pecl_amqp/Dockerfile)
 [`apcu`](https://pecl.php.net/package/apcu) _PECL_ | `(5.1.21)` [:whale:](7.4/bullseye/pecl_apcu/Dockerfile) | `(5.1.21)` [:whale:](7.4/alpine3.15/pecl_apcu/Dockerfile) | `(5.1.21)` [:whale:](8.0/bullseye/pecl_apcu/Dockerfile) | `(5.1.21)` [:whale:](8.0/alpine3.15/pecl_apcu/Dockerfile) | `(5.1.21)` [:whale:](8.1/bullseye/pecl_apcu/Dockerfile) | `(5.1.21)` [:whale:](8.1/alpine3.15/pecl_apcu/Dockerfile)
 [`ast`](https://pecl.php.net/package/ast) _PECL_ | `(1.0.16)` [:whale:](7.4/bullseye/pecl_ast/Dockerfile) | `(1.0.16)` [:whale:](7.4/alpine3.15/pecl_ast/Dockerfile) | `(1.0.16)` [:whale:](8.0/bullseye/pecl_ast/Dockerfile) | `(1.0.16)` [:whale:](8.0/alpine3.15/pecl_ast/Dockerfile) | `(1.0.16)` [:whale:](8.1/bullseye/pecl_ast/Dockerfile) | `(1.0.16)` [:whale:](8.1/alpine3.15/pecl_ast/Dockerfile)
