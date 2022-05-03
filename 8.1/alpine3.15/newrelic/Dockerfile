@@ -3,7 +3,7 @@ FROM php:8.1-alpine3.15
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-newrelic
-ARG PHPEXT_NEWRELIC_VERSION=9.20.0.310
+ARG PHPEXT_NEWRELIC_VERSION=9.21.0.311
 RUN set -eux; \
   curl -fsSL https://download.newrelic.com/php_agent/release/newrelic-php5-${PHPEXT_NEWRELIC_VERSION}-linux-musl.tar.gz \
     | tar -xzC /tmp; \
