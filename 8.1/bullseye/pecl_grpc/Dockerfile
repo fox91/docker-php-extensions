@@ -3,7 +3,7 @@ FROM php:8.1-bullseye
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-grpc
-ARG PHPEXT_GRPC_VERSION=1.48.0
+ARG PHPEXT_GRPC_VERSION=1.49.0
 RUN set -eux; \
   buildDeps=" \
     libzip-dev \
