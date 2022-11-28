@@ -3,7 +3,7 @@ FROM php:7.4-bullseye
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-xhprof
-ARG PHPEXT_XHPROF_VERSION=2.3.7
+ARG PHPEXT_XHPROF_VERSION=2.3.8
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext xhprof-${PHPEXT_XHPROF_VERSION}; \
   docker-php-ext-install -j$(nproc) xhprof/extension; \
