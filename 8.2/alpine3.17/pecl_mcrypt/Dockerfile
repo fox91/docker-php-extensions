@@ -3,7 +3,7 @@ FROM php:8.2-alpine3.17
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-mcrypt
-ARG PHPEXT_MCRYPT_VERSION=1.0.5
+ARG PHPEXT_MCRYPT_VERSION=1.0.6
 RUN set -eux; \
   persistentDeps=" \
     libmcrypt \
