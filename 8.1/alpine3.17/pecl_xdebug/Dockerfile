@@ -3,7 +3,7 @@ FROM php:8.1-alpine3.17
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-xdebug
-ARG PHPEXT_XDEBUG_VERSION=3.2.0
+ARG PHPEXT_XDEBUG_VERSION=3.2.1
 RUN set -eux; \
   buildDeps=" \
     linux-headers \
