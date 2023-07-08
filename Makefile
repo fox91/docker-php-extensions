@@ -5,10 +5,17 @@ OS_V = bullseye
 all: build test-version test-module test-info test-tmp-files
 
 .PHONY: test
-all: test-version test-module test-info test-tmp-files
+test: test-version test-module test-info test-tmp-files
+
+.PHONY: pull
+pull:
+	@set -eu; \
+	echo "::group::-=-=- $@ \"PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
+	docker pull php:$(PHP_V)-$(OS_V); \
+	echo "::endgroup::"
 
 .PHONY: build
-build:
+build: pull
 	@set -eu; \
 	for file in $(shell find $(CURDIR)/$(PHP_V)/$(OS_V)/ -type f -name Dockerfile | sort); do \
 		ext_n=$$(basename $$(dirname $$file)); \
