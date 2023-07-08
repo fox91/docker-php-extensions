@@ -1,5 +1,5 @@
 PHP_V = 8.1
-OS_V = bullseye
+OS_V = bookworm
 
 .PHONY: all
 all: build test-version test-module test-info test-tmp-files
