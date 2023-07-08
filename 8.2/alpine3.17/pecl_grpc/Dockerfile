@@ -3,7 +3,7 @@ FROM php:8.2-alpine3.17
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-grpc
-ARG PHPEXT_GRPC_VERSION=1.53.0
+ARG PHPEXT_GRPC_VERSION=1.56.0
 RUN set -eux; \
   persistentDeps=" \
     libstdc++ \
