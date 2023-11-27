@@ -1,4 +1,4 @@
-PHP_V = 8.1
+PHP_V = 8.3
 OS_V = bookworm
 
 .PHONY: all
