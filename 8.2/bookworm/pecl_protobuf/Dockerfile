@@ -3,7 +3,7 @@ FROM php:8.2-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-protobuf
-ARG PHPEXT_PROTOBUF_VERSION=3.23.4
+ARG PHPEXT_PROTOBUF_VERSION=3.25.1
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext protobuf-${PHPEXT_PROTOBUF_VERSION}; \
   docker-php-ext-install -j$(nproc) protobuf; \

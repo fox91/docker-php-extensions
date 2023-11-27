@@ -3,7 +3,7 @@ FROM php:8.2-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-newrelic
-ARG PHPEXT_NEWRELIC_VERSION=10.11.0.3
+ARG PHPEXT_NEWRELIC_VERSION=10.14.0.3
 RUN set -eux; \
   curl -fsSL https://download.newrelic.com/php_agent/archive/${PHPEXT_NEWRELIC_VERSION}/newrelic-php5-${PHPEXT_NEWRELIC_VERSION}-linux.tar.gz \
     | tar -xzC /tmp; \
