@@ -3,7 +3,7 @@ FROM php:8.2-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-amqp
-ARG PHPEXT_AMQP_VERSION=2.1.1
+ARG PHPEXT_AMQP_VERSION=2.1.2
 RUN set -eux; \
   persistentDeps=" \
     librabbitmq4 \

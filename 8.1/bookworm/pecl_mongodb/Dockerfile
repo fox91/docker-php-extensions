@@ -3,7 +3,7 @@ FROM php:8.1-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-mongodb
-ARG PHPEXT_MONGODB_VERSION=1.17.0
+ARG PHPEXT_MONGODB_VERSION=1.19.1
 RUN set -eux; \
   buildDeps=" \
     libssl-dev \

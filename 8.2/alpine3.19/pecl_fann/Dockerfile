@@ -3,7 +3,7 @@ FROM php:8.2-alpine3.19
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-fann
-ARG PHPEXT_FANN_VERSION=1.2.0RC2
+ARG PHPEXT_FANN_VERSION=1.2.0
 RUN set -eux; \
   persistentDeps=" \
     fann \
