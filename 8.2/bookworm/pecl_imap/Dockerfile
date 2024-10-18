@@ -3,7 +3,7 @@ FROM php:8.2-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-imap
-ARG PHPEXT_IMAP_VERSION=1.0.2
+ARG PHPEXT_IMAP_VERSION=1.0.3
 RUN set -eux; \
   buildDeps=" \
     libc-client-dev \

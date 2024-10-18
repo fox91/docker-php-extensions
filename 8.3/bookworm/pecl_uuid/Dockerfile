@@ -3,7 +3,7 @@ FROM php:8.3-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-uuid
-ARG PHPEXT_UUID_VERSION=1.2.0
+ARG PHPEXT_UUID_VERSION=1.2.1
 RUN set -eux; \
   buildDeps=" \
     uuid-dev \

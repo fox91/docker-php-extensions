@@ -3,7 +3,7 @@ FROM php:8.1-alpine3.19
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-imap
-ARG PHPEXT_IMAP_VERSION=1.0.2
+ARG PHPEXT_IMAP_VERSION=1.0.3
 RUN set -eux; \
   persistentDeps=" \
     c-client \

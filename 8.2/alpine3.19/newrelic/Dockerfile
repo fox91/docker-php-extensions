@@ -3,19 +3,22 @@ FROM php:8.2-alpine3.19
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-newrelic
-ARG PHPEXT_NEWRELIC_VERSION=10.21.0.11
 RUN set -eux; \
-  curl -fsSL https://download.newrelic.com/php_agent/release/newrelic-php5-${PHPEXT_NEWRELIC_VERSION}-linux-musl.tar.gz \
+  # Discover the latest released version:
+  export NEW_RELIC_AGENT_VERSION=$(curl -fsSL https://download.newrelic.com/php_agent/release/ | grep -o '[1-9][0-9]\?\(\.[0-9]\+\)\{3\}' | head -n1); \
+  # Discover libc provider
+  export NR_INSTALL_PLATFORM=$(ldd --version 2>&1 | grep -q musl && echo "linux-musl" || echo "linux"); \
+  \
+  # Download the discovered version:
+  curl -fsSL https://download.newrelic.com/php_agent/release/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-${NR_INSTALL_PLATFORM}.tar.gz \
     | tar -xzC /tmp; \
-  export NR_INSTALL_USE_CP_NOT_LN=1; \
-  /tmp/newrelic-php5-*/newrelic-install install; \
+  # Install the downloaded agent:
+  NR_INSTALL_USE_CP_NOT_LN=1 NR_INSTALL_SILENT=0 /tmp/newrelic-php5-*/newrelic-install install; \
   \
-  sed -i \
-    -e 's/"REPLACE_WITH_REAL_KEY"/"YOUR_LICENSE_KEY"/' \
-    -e 's/newrelic.appname = "PHP Application"/newrelic.appname = "YOUR_APPLICATION_NAME"/' \
-    -e 's/;newrelic.daemon.app_connect_timeout =.*/newrelic.daemon.app_connect_timeout=15s/' \
-    -e 's/;newrelic.daemon.start_timeout =.*/newrelic.daemon.start_timeout=5s/' \
-    /usr/local/etc/php/conf.d/newrelic.ini \
-  ; \
+  # Configure the agent to use license key from NEW_RELIC_LICENSE_KEY env var:
+  sed -ie 's/[ ;]*newrelic.license[[:space:]]=.*/newrelic.license=${NEW_RELIC_LICENSE_KEY}/' $(php-config --ini-dir)/newrelic.ini; \
+  # Configure the agent to use app name from NEW_RELIC_APP_NAME env var:
+  sed -ie 's/[ ;]*newrelic.appname[[:space:]]=.*/newrelic.appname=${NEW_RELIC_APP_NAME}/' $(php-config --ini-dir)/newrelic.ini; \
   \
+  # Cleanup temporary files:
   rm -rf /tmp/* /var/tmp/*
