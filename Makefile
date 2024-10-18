@@ -1,4 +1,4 @@
-PHP_V = 8.3
+PHP_V = 8.4
 OS_V = bookworm
 
 .PHONY: all
@@ -11,7 +11,7 @@ test: test-version test-module test-info test-tmp-files
 pull:
 	@set -eu; \
 	echo "::group::-=-=- $@ \"PHP: $(PHP_V), OS: $(OS_V)\" =-=-="; \
-	docker pull php:$(PHP_V)-$(OS_V); \
+	docker pull php:$(PHP_V)-$(OS_V) || true; \
 	echo "::endgroup::"
 
 .PHONY: build
