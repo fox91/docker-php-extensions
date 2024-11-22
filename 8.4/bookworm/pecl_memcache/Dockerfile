@@ -1,4 +1,4 @@
-FROM php:8.4-rc-bookworm
+FROM php:8.4-bookworm
 
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
