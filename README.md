@@ -6,10 +6,10 @@
 
 Branch | Initial Release | Active Support Until | Security Support Until
 -------|:---------------:|:--------------------:|:----------------------:
-`8.1` | 25 Nov 2021 | 25 Nov 2023 | 25 Nov 2024
-`8.2` | 08 Dec 2022 | 08 Dec 2024 | 08 Dec 2025
-`8.3` | 23 Nov 2023 | 23 Nov 2025 | 23 Nov 2026
-`8.4` | 21 Nov 2024 (expected) | 21 Nov 2026 (expected) | 21 Nov 2027 (expected)
+`8.1` | 25 Nov 2021 | 25 Nov 2023 | 31 Dec 2025
+`8.2` | 08 Dec 2022 | 31 Dec 2024 | 31 Dec 2026
+`8.3` | 23 Nov 2023 | 31 Dec 2025 | 31 Dec 2027
+`8.4` | 21 Nov 2024 | 31 Dec 2026 | 31 Dec 2028
 
 ## Supported PHP extensions
 
