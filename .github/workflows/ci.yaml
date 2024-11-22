@@ -6,7 +6,7 @@ on:
       - '**'
     # tags:
     #   - 'v*'
-  pull_request:
+  # pull_request:
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php_version: ["8.1", "8.2", "8.3"]
+        php_version: ["8.1", "8.2", "8.3", "8.4"]
         os_version: ["alpine3.20", "bookworm"]
     steps:
       -
