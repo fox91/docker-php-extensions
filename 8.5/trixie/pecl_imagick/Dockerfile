@@ -6,7 +6,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ARG PHPEXT_IMAGICK_VERSION=3.8.0
 RUN set -eux; \
   persistentDeps=" \
-    libmagickwand-6.q16-6 \
+    libmagickwand-7.q16-10 \
   "; \
   buildDeps=" \
     libmagickwand-dev \
