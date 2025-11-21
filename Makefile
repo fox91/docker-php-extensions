@@ -1,5 +1,5 @@
 PHP_V = 8.4
-OS_V = bookworm
+OS_V = trixie
 
 .PHONY: all
 all: build test-version test-module test-info test-tmp-files
