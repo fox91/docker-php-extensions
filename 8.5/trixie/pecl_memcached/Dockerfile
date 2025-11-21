@@ -6,9 +6,9 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ARG PHPEXT_MEMCACHED_VERSION=3.4.0
 RUN set -eux; \
   persistentDeps=" \
-    libmemcached11 \
-    libmemcachedutil2 \
-    libzip4 \
+    libmemcached11t64 \
+    libmemcachedutil2t64 \
+    libzip5 \
   "; \
   buildDeps=" \
     libmemcached-dev \

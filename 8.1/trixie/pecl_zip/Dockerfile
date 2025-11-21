@@ -6,7 +6,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ARG PHPEXT_ZIP_VERSION=1.22.7
 RUN set -eux; \
   persistentDeps=" \
-    libzip4 \
+    libzip5 \
   "; \
   buildDeps=" \
     libzip-dev \

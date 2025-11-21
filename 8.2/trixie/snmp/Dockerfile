@@ -5,7 +5,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 # PHP ext-snmp
 RUN set -eux; \
   persistentDeps=" \
-    libsnmp40 \
+    libsnmp40t64 \
     snmp-mibs-downloader \
   "; \
   buildDeps=" \

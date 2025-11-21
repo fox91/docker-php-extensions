@@ -6,7 +6,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ARG PHPEXT_PHPIREDIS_VERSION=1.0.1
 RUN set -eux; \
   persistentDeps=" \
-    libhiredis0.14 \
+    libhiredis1.1.0 \
   "; \
   buildDeps=" \
     libhiredis-dev \
