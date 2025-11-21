@@ -5,7 +5,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 # PHP ext-ldap
 RUN set -eux; \
   persistentDeps=" \
-    libldap-2.5-0 \
+    libldap2 \
   "; \
   buildDeps=" \
     libldap2-dev \
