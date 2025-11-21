@@ -3,7 +3,7 @@ FROM php:8.2-alpine3.22
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-uuid
-ARG PHPEXT_UUID_VERSION=1.2.1
+ARG PHPEXT_UUID_VERSION=1.3.0
 RUN set -eux; \
   persistentDeps=" \
     util-linux \

@@ -3,7 +3,7 @@ FROM php:8.2-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-zstd
-ARG PHPEXT_ZSTD_VERSION=0.13.3
+ARG PHPEXT_ZSTD_VERSION=0.15.2
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext zstd-${PHPEXT_ZSTD_VERSION}; \
   docker-php-ext-install -j$(nproc) zstd; \

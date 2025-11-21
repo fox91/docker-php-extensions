@@ -3,7 +3,7 @@ FROM php:8.4-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-xdebug
-ARG PHPEXT_XDEBUG_VERSION=3.4.0beta1
+ARG PHPEXT_XDEBUG_VERSION=3.4.7
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext xdebug-${PHPEXT_XDEBUG_VERSION}; \
   docker-php-ext-install -j$(nproc) xdebug; \

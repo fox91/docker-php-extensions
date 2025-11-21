@@ -3,7 +3,7 @@ FROM php:8.4-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-yaml
-ARG PHPEXT_YAML_VERSION=2.2.4
+ARG PHPEXT_YAML_VERSION=2.3.0
 RUN set -eux; \
   persistentDeps=" \
     libyaml-0-2 \

@@ -3,7 +3,7 @@ FROM php:8.1-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-gearman
-ARG PHPEXT_GEARMAN_VERSION=2.1.2
+ARG PHPEXT_GEARMAN_VERSION=2.1.4
 RUN set -eux; \
   persistentDeps=" \
     libgearman8 \
