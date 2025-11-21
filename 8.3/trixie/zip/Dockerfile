@@ -5,7 +5,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 # PHP ext-zip
 RUN set -eux; \
   persistentDeps=" \
-    libzip4 \
+    libzip5 \
   "; \
   buildDeps=" \
     libzip-dev \

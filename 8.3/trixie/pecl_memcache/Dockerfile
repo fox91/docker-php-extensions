@@ -6,7 +6,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 ARG PHPEXT_MEMCACHE_VERSION=8.2
 RUN set -eux; \
   persistentDeps=" \
-    libzip4 \
+    libzip5 \
   "; \
   buildDeps=" \
     libzip-dev \
