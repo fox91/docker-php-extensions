@@ -5,7 +5,7 @@ LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 # PHP ext-intl
 RUN set -eux; \
   persistentDeps=" \
-    libicu72 \
+    libicu76 \
   "; \
   buildDeps=" \
     libicu-dev \
