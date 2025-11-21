@@ -12,7 +12,7 @@ This repository provides **minimal Dockerfile templates** for installing individ
 {PHP_VERSION}/{OS_VERSION}/{EXTENSION_NAME}/Dockerfile
 ```
 
-- PHP versions: 8.1, 8.2, 8.3, 8.4
+- PHP versions: 8.1, 8.2, 8.3, 8.4, 8.5
 - OS versions: `trixie` (Debian-based), `alpine3.22` (Alpine Linux)
 - Extension naming: Standard extensions use their name (e.g., `bcmath`, `gd`), PECL extensions use `pecl_` prefix (e.g., `pecl_redis`, `pecl_xdebug`)
 
@@ -24,18 +24,18 @@ The Makefile is used for **testing templates**, not for building production imag
 
 ### Build and test all templates for a PHP/OS combination
 ```bash
-make build PHP_V=8.3 OS_V=trixie  # Build test images
-make test PHP_V=8.3 OS_V=trixie   # Run all tests
+make build PHP_V=8.5 OS_V=trixie  # Build test images
+make test PHP_V=8.5 OS_V=trixie   # Run all tests
 ```
 
 ### Build and test everything
 ```bash
-make all PHP_V=8.3 OS_V=trixie
+make all PHP_V=8.5 OS_V=trixie
 ```
 
 ### Clean up test images
 ```bash
-make clean PHP_V=8.3 OS_V=trixie
+make clean PHP_V=8.5 OS_V=trixie
 ```
 
 ### Work with staged changes only (for template development)
@@ -94,7 +94,7 @@ The tmp-files test is critical - templates must not leave `/usr/src/php`, `/tmp/
 
 GitHub Actions workflow (`.github/workflows/ci.yaml`) validates all templates:
 - Builds and tests every template combination (PHP versions × OS versions × extensions)
-- Matrix strategy: PHP 8.1, 8.2, 8.3, 8.4 × alpine3.22, trixie
+- Matrix strategy: PHP 8.1, 8.2, 8.3, 8.4, 8.5 × alpine3.22, trixie
 - Runs on every push to any branch
 - Ensures templates remain valid as PHP versions evolve
 
@@ -123,13 +123,13 @@ When adding a new extension template:
 Users copy relevant RUN commands from templates into their own Dockerfiles to compose multi-extension images:
 
 ```dockerfile
-FROM php:8.3-trixie
+FROM php:8.5-trixie
 
 # Copy from bcmath template
 RUN docker-php-ext-install -j$(nproc) bcmath
 
 # Copy from pecl_redis template
-ARG PHPEXT_REDIS_VERSION=6.1.0
+ARG PHPEXT_REDIS_VERSION=6.3.0
 RUN set -eux; \
   pecl bundle -d /usr/src/php/ext redis-${PHPEXT_REDIS_VERSION}; \
   docker-php-ext-install -j$(nproc) redis; \
