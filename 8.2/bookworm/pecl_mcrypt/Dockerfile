@@ -3,7 +3,7 @@ FROM php:8.2-bookworm
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-mcrypt
-ARG PHPEXT_MCRYPT_VERSION=1.0.7
+ARG PHPEXT_MCRYPT_VERSION=1.0.9
 RUN set -eux; \
   persistentDeps=" \
     libmcrypt4 \

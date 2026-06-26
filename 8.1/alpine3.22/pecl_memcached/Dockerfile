@@ -3,7 +3,7 @@ FROM php:8.1-alpine3.22
 LABEL maintainer="Andrea Falco <andrea@falco.sh>"
 
 # PHP ext-memcached
-ARG PHPEXT_MEMCACHED_VERSION=3.3.0
+ARG PHPEXT_MEMCACHED_VERSION=3.4.0
 RUN set -eux; \
   persistentDeps=" \
     libmemcached \
