@@ -1,4 +1,4 @@
-PHP_V = 8.4
+PHP_V = 8.5
 OS_V = trixie
 
 .PHONY: all
